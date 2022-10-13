@@ -64,7 +64,7 @@ section {
 }
 
 .section-bg {
-  background-color: #eee;
+    background-color: #FFFFFF;
 }
 
 .section-header {
@@ -278,8 +278,8 @@ section {
 }
 
 .header.sticked {
-  border-color: #fff;
-  border-color: #eee;
+    border-color: #fff;
+    border-color: #FFFFFF;
 }
 
 .header .logo img {
