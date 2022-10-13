@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace BorrowLanded.Data
+namespace PizzaWebApp.Data
 {
     public class ApplicationDBContext : DbContext
     {
