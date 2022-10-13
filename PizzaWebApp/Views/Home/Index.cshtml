@@ -1,5 +1,5 @@
 ﻿
-  
+@model IEnumerable<PizzaWebApp.Models.Pizza>  
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero d-flex align-items-center ">
@@ -46,17 +46,19 @@
             
                       <div class="row gy-5">
                         @{
-                            for(int i = 0; i < 6; i++)
+                            foreach(var item in Model)
                             {
-                           <div class="col-lg-4 menu-item">
-                            <a href="/img/pizza.png" class="glightbox"><img src="/img/pizza.png" class="menu-img img-fluid" alt=""></a>
-                            <h4>Magnam Tiste</h4>
-                            <p class="ingredients">
-                              Lorem, deren, trataro, filede, nerada
-                            </p>
-                            <p class="price"> $5.95</p>
-                          </div>  
+                              <div class="col-lg-4 menu-item">
+                                <a href="/img/pizza.png" class="glightbox"><img src="/img/pizza.png" class="menu-img img-fluid" alt=""></a>
+                                <h4>@item.Name</h4>
+                                <p class="ingredients">
+                                  @item.Ingredients
+                                </p>
+                                <p class="price"> $@item.Price</p>
+                              </div>    
                             }
+                            
+                            
               }
                     </div>
                   </div><!-- End Starter Menu Content -->
