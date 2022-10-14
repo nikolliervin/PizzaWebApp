@@ -18,11 +18,24 @@ namespace PizzaWebApp.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult Create(Contact obj)
         {
-            _db.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+
+
+            if (ModelState.IsValid)
+            {
+                _db.Add(obj);
+                _db.SaveChanges();
+                ViewBag.SuccessMessage = "Form was submited successfully!";
+                ModelState.Clear();
+
+
+            }
+
+            return View("Index");
         }
+
+
     }
 }
