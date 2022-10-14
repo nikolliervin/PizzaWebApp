@@ -11,6 +11,7 @@ namespace PizzaWebApp.Data
         }
 
         public DbSet<Pizza> Pizza { get; set; }
+        public DbSet<Contact> Contact { get; set; }
 
 
     }
