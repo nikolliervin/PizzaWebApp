@@ -31,7 +31,24 @@ namespace PizzaWebApp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        public IActionResult GetOrder(int? id)
+        {
 
+            if (id == null)
+            {
+                return NotFound();
+
+            }
+            var obj = _db.Pizza.Find(id);
+
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+
+
+        }
 
 
     }
