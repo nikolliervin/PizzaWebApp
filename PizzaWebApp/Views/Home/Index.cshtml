@@ -43,44 +43,40 @@
               <p>Menu</p>
               <h3>Pizza</h3>
             </div>
-            
+              
+
+                
                       <div class="row gy-5">
                         @{
-                            foreach(var item in Model)
+                            foreach (var item in Model)
                             {
-                              <div class="col-lg-4 menu-item">
-                                <a href="/img/pizza.png" class="glightbox"><img src="/img/pizza.png" class="menu-img img-fluid" alt=""></a>
-                                <h4>@item.Name</h4>
-                                <div class="ing_container flex-column justify-content-center">
-                                <p class="text-center">
-                                  @item.Ingredients
-                                </p>
-                                </div>
-                                <p class="price"> $@item.Price</p>
-                              </div>    
-                            }
-                            
-                            
-              }
-                    </div>
-                  </div>
+                                            <div class="col-lg-4 menu-item">
+                                                <a href="/img/pizza.png" class="glightbox"><img src="/img/pizza.png" class="menu-img img-fluid" alt=""></a>
+                                                <h4>@item.Name</h4>
+                                                <div class="ing_container flex-column justify-content-center">
+                                                    <p class="text-center">
+                                                        @item.Ingredients
+                                                    </p>
+                                                </div>
+                                                <p class="price"> $@item.Price</p>
+                                                <a class="btn-book-a-table bg-red" asp-controller="Home" asp-action="SetOrder" asp-route-Id="@item.Id">Order</a>
 
+                                            </div>
+
+                            }
+                            }
+                                </div>
+                    
                   
 
-                     
-
+                  </div>
+                                     
                 </div>
 
               </div>
             </section>
 
-   
-   
-   
-
-   
-
-          </main><!-- End #main -->
+          </main>
 
  
 
