@@ -18,6 +18,7 @@ namespace PizzaWebApp.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult Create(Bookings obj)
         {
             if (ModelState.IsValid)
@@ -27,7 +28,7 @@ namespace PizzaWebApp.Controllers
                 ViewBag.SuccessMessage = "Your booking was set successfully! You will be called to confirm your booking.";
 
             }
-            return View(obj);
+            return View("Index");
         }
     }
 }
