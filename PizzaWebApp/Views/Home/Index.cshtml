@@ -51,9 +51,11 @@
                               <div class="col-lg-4 menu-item">
                                 <a href="/img/pizza.png" class="glightbox"><img src="/img/pizza.png" class="menu-img img-fluid" alt=""></a>
                                 <h4>@item.Name</h4>
-                                <p class="ingredients">
+                                <div class="ing_container flex-column justify-content-center">
+                                <p class="text-center">
                                   @item.Ingredients
                                 </p>
+                                </div>
                                 <p class="price"> $@item.Price</p>
                               </div>    
                             }
