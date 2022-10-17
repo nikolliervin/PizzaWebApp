@@ -14,7 +14,7 @@
         <div class="m-2">
             <img src="/img/pizza.png" />
         </div>
-     <form method="post" asp-action="GetOrder" class="mt-5">
+     <form method="post" asp-action="PostOrder" class="mt-5">
 
          <input asp-for="Id" hidden />
 
@@ -28,12 +28,18 @@
         </div>
         <div class="form-group">
         <label for="formGroupExampleInput2">Price</label>
-        <input asp-for="Price" disabled type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+        <input asp-for="Price" disabled type="text" class="form-control" id="price" placeholder="Another input">
         </div>
         <div class="form-group">
         <label for="formGroupExampleInput2">Amount</label>
-        <input disabled type="number" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Another input" min="1" value="1">
         </div>
+        <hr class="hr hr-blurry" />
+        <div class="form-group">
+        <label for="TotalAmout" id="totalPrice">Total Price:</label>
+        
+        </div>
+
          
     </form>
     </div>
