@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PizzaWebApp.Data;
-using PizzaWebApp.Models;
-using System.Collections.Generic;
 
 namespace PizzaWebApp.Controllers
 {
@@ -15,7 +13,6 @@ namespace PizzaWebApp.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<ChartItem> objList = _db.Pizza;
             return View();
         }
     }

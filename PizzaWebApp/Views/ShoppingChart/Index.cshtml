@@ -1,4 +1,4 @@
-﻿@model Enumerable<PizzaWebApp.Models.ChartItem>
+﻿@model List<PizzaWebApp.Models.ChartItem>
 
 <div class="mt-5 mb-3 pt-5 pb-3">
 
@@ -18,17 +18,17 @@
   <tbody>
     <tr>
       
-      <td>@item.</td>
+      <td>@item.Pizza.Name</td>
       
     </tr>
     <tr>
       
-      <td>Jacob</td>
+      <td>@item.Pizza.Ingredients</td>
       
     </tr>
     <tr>
       
-      <td>Larry</td>
+      <td>@item.Pizza.Price</td>
       
     </tr>
   </tbody>
