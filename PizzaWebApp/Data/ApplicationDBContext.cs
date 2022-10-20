@@ -15,6 +15,6 @@ namespace PizzaWebApp.Data
 
         public DbSet<Bookings> Bookings { get; set; }
 
-        public DbSet<ChartItem> ChartItems { get; set; }
+        public DbSet<CartItem> ChartItems { get; set; }
     }
 }

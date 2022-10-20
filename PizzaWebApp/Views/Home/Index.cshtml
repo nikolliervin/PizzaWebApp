@@ -46,8 +46,9 @@
                       <div class="row gy-5">
                         @{
                             foreach (var item in Model)
-                            {
+                            {       
                                             <div class="col-lg-4 menu-item">
+                                            <form method="post">
                                                 <a href="/img/pizza.png" class="glightbox"><img src="/img/pizza.png" class="menu-img img-fluid" alt=""></a>
                                                 <h4>@item.Name</h4>
                                                 <div class="ing_container flex-column justify-content-center">
@@ -56,11 +57,11 @@
                                                     </p>
                                                 </div>
                                                 <p class="price"> $@item.Price</p>
-                                                <a class="btn-book-a-table bg-red" asp-controller="ShoppingChart" asp-action="Index" asp-route-Id="@item.Id">Add to Chart</a>
+                                                <button type="submit" asp-controller="ShoppingCart" asp-action="AddToCart"class="btn btn-outline-secondary" asp-route-Id="@item.Id" value="Add to Cart">Add to Cart</button>
+                                            </form>
 
                                             </div>
-
-                            }
+                            }       
                             }
                                 </div>
                     
