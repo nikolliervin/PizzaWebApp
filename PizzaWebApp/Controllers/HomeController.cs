@@ -36,7 +36,13 @@ namespace PizzaWebApp.Controllers
         public IActionResult AddToCart(int? id)
         {
             var PizzaItem = _db.Pizza.Find(id);
-            CartItems item = new CartItems { Amount = 1, Pizza = PizzaItem };
+            CartItems item = new CartItems
+            {
+                Amount = 1,
+                Pizza = PizzaItem,
+                PizzaIngredients = PizzaItem.Ingredients,
+                PizzaPrice = PizzaItem.Price
+            };
 
             if (ModelState.IsValid)
             {
