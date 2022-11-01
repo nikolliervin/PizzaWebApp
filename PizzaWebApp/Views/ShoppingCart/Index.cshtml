@@ -1,4 +1,6 @@
 ﻿
+@model IEnumerable<PizzaWebApp.Models.CartItems>  
+
 
 <div class="mt-5 mb-3 pt-5 pb-3">
 
@@ -6,33 +8,36 @@
     @{
         foreach(var item in Model)
         {
-            <table class="table mt-5 mb-5 pt-5">
-  <thead>
-    <tr>
+           <table class="table mt-5 mb-5 pt-5">
+            <thead>
+                <tr>
       
-      <th scope="col">Name</th>
-      <th scope="col">Ingredients</th>
-      <th scope="col">Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
+                 <th scope="col">Name</th>
+                 <th scope="col">Price</th>
+                 <th scope="col">Amount</th>
+                </tr>
+            </thead>
+             <tbody>
+                <tr>
       
-      <td></td>
+                <td>@item.Pizza</td>
       
-    </tr>
-    <tr>
+                </tr>
+                <tr>
       
-      <td></td>
+                <td></td>
       
-    </tr>
-    <tr>
+                </tr>
+                <tr>
       
-      <td></td>
+                <td></td>
       
-    </tr>
-  </tbody>
-</table>
+                </tr>
+                <tr>
+                <td>@item.Amount </td>
+                </tr>
+             </tbody>
+            </table>
         }
     }
 
