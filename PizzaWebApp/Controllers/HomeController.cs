@@ -31,23 +31,20 @@ namespace PizzaWebApp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult GetOrder(int? id)
+
+        [HttpPost]
+        public IActionResult AddToCart(int? id)
         {
+            var PizzaItem = _db.Pizza.Find(id);
+            CartItems item = new CartItems { Amount = 1, Pizza = PizzaItem };
 
-            if (id == null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
-
+                _db.Cart.Add(item);
+                _db.SaveChanges();
             }
-            var obj = _db.Pizza.Find(id);
 
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            return View(obj);
-
-
+            return RedirectToAction("Index");
         }
 
 
