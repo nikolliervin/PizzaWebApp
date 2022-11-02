@@ -240,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+let totalPriceOfItem = doucment.getElementById("TotalItemPrice").innerHTML;
 let pricePerItem = document.getElementById("PizzaPrice").innerHTML;
 let itemTotal = document.getElementById("TotalItemPrice").getAttribute("value");
 let updateAmount = document.getElementById("updateAmount");
@@ -249,7 +250,7 @@ function getTotalPrice(pricePerItem, itemTotal) {
 
 
 updateAmount.addEventListener("click", () => {
-    return getTotalPrice(pricePerItem, itemTotal);
+    totalPriceOfItem = getTotalPrice(pricePerItem, itemTotal);
 })
 
 
