@@ -240,8 +240,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+let pricePerItem = document.getElementById("PizzaPrice").innerHTML;
+let itemTotal = document.getElementById("TotalItemPrice").getAttribute("value");
+let updateAmount = document.getElementById("updateAmount");
+function getTotalPrice(pricePerItem, itemTotal) {
+    return pricePerItem * itemTotal;
+}
 
 
+updateAmount.addEventListener("click", () => {
+    return getTotalPrice(pricePerItem, itemTotal);
+})
 
 
 
