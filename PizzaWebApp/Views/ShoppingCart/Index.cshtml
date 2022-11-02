@@ -5,41 +5,36 @@
 <div class="mt-5 mb-3 pt-5 pb-3">
 
 
-    @{
-        foreach(var item in Model)
-        {
-           <table class="table mt-5 mb-5 pt-5">
-            <thead>
-                <tr>
-      
-                 <th scope="col">Name</th>
-                 <th scope="col">Price</th>
-                 <th scope="col">Amount</th>
-                </tr>
-            </thead>
-             <tbody>
-                <tr>
-      
-                <td>@item.Pizza</td>
-      
-                </tr>
-                <tr>
-      
-                <td></td>
-      
-                </tr>
-                <tr>
-      
-                <td></td>
-      
-                </tr>
-                <tr>
-                <td>@item.Amount </td>
-                </tr>
-             </tbody>
-            </table>
-        }
-    }
+    
+         <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Ingredients</th>
+      <th scope="col">Price per pizza</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+            @foreach(var item in Model)
+            {
+      <tr>
+      <th scope="row">@item.PizzaName</th>
+      <td>@item.PizzaIngredients</td>
+      <td id="PizzaPrice">@item.PizzaPrice</td>
+      <td><input type="number" value="@item.Amount" class="form-control"></td>
+      <td id="TotalItemPrice">Empty</td>
+    </tr>
+            }
+           
+
+    
+    
+  </tbody>
+</table>
 
 
 

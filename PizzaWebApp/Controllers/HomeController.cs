@@ -40,6 +40,7 @@ namespace PizzaWebApp.Controllers
             {
                 Amount = 1,
                 Pizza = PizzaItem,
+                PizzaName = PizzaItem.Name,
                 PizzaIngredients = PizzaItem.Ingredients,
                 PizzaPrice = PizzaItem.Price
             };

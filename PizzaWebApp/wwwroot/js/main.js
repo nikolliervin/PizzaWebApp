@@ -240,9 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-function getTotalPrice(price, amount) {
-    return price * amount
-}
+
 
 
 
