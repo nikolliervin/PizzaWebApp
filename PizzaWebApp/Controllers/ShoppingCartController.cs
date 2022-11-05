@@ -64,5 +64,22 @@ namespace PizzaWebApp.Controllers
             return View(item);
 
         }
+
+        public IActionResult DeleteItem(int? id)
+        {
+            if (id == 0 || id == null)
+                return NotFound();
+
+            var item = _db.Cart.Find(id);
+
+            if (item == null)
+                return NotFound();
+
+            _db.Cart.Remove(item);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+
+        }
     }
 }
