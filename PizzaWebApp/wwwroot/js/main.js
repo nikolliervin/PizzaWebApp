@@ -1,9 +1,4 @@
-/**
-* Template Name: Yummy - v1.2.1
-* Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
@@ -240,18 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-let totalPriceOfItem = doucment.getElementById("TotalItemPrice").innerHTML;
-let pricePerItem = document.getElementById("PizzaPrice").innerHTML;
-let itemTotal = document.getElementById("TotalItemPrice").getAttribute("value");
-let updateAmount = document.getElementById("updateAmount");
-function getTotalPrice(pricePerItem, itemTotal) {
-    return pricePerItem * itemTotal;
-}
 
-
-updateAmount.addEventListener("click", () => {
-    totalPriceOfItem = getTotalPrice(pricePerItem, itemTotal);
-})
 
 
 

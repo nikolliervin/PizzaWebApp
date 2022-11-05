@@ -1,6 +1,6 @@
 ﻿
 @model IEnumerable<PizzaWebApp.Models.CartItems>  
-
+<script src="~/js/main.js"></script>
 
 <div class="mt-5 mb-3 pt-5 pb-3">
 
@@ -11,23 +11,34 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Ingredients</th>
-      <th scope="col">Price per pizza</th>
+      <th scope="col">Price</th>
       <th scope="col">Amount</th>
       <th scope="col">Total</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="cartTable">
 
 
             @foreach(var item in Model)
             {
       <tr>
-      <th scope="row">@item.PizzaName</th>
+      
+
+      <td scope="row">@item.PizzaName</td>
       <td>@item.PizzaIngredients</td>
-      <td id="PizzaPrice">@item.PizzaPrice</td>
-      <td><input type="number" value="@item.Amount" class="form-control">
-          <button type="button" class="btn btn-light" id="updateAmount">Update Amount</button></td>
-      <td id="TotalItemPrice"></td>
+      <td>$@item.PizzaPrice</td>
+      <form method="post">
+          <input type="hidden" asp-for="@item.Id">
+      <td>
+          
+          <input type="number" asp-for="@item.Amount" value="@item.Amount" class="form-control">
+          <button  type="submit" class="btn btn-light m-1" asp-action="Update" asp-route-id="@item.Id" >Update Amount</button>
+
+          <button  type="submit" class="btn btn-danger m-1">Delete Item</button></td>
+          
+      <td class="TotalItemPrice" >$@item.CartItemTotal</td>
+      </form>
+
     </tr>
             }
            
@@ -40,3 +51,4 @@
 
 
 </div>
+

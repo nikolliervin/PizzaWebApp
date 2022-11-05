@@ -12,6 +12,8 @@
         public double PizzaPrice { get; set; }
         public int Amount { get; set; }
 
+        public double CartItemTotal { get; set; }
+
 
     }
 }

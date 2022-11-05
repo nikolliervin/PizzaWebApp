@@ -21,5 +21,12 @@ namespace PizzaWebApp.Controllers
             return View(objList);
 
         }
+
+        [HttpPost]
+        public IActionResult Update(int amount)
+        {
+
+            return RedirectToAction("Index");
+        }
     }
 }
