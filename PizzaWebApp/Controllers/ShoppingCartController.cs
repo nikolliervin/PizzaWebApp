@@ -38,6 +38,31 @@ namespace PizzaWebApp.Controllers
             return View(item);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SetAmountDb(CartItems item)
+        {
+            var itemToBeEdited = new CartItems
+            {
+                Id = item.Id,
+                Amount = item.Amount,
+                Pizza = item.Pizza,
+                PizzaName = item.PizzaName,
+                PizzaIngredients = item.PizzaIngredients,
+                PizzaPrice = item.PizzaPrice,
+                CartItemTotal = item.Amount * item.PizzaPrice
 
+            };
+
+            if (ModelState.IsValid)
+            {
+                _db.Cart.Update(itemToBeEdited);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(item);
+
+        }
     }
 }
