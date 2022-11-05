@@ -22,11 +22,22 @@ namespace PizzaWebApp.Controllers
 
         }
 
-        [HttpPost]
-        public IActionResult Update(int amount)
+
+        public IActionResult SetAmount(int? id)
         {
 
-            return RedirectToAction("Index");
+            if (id == null || id == 0)
+                return NotFound();
+
+            var item = _db.Cart.Find(id);
+
+            if (item == null)
+                return NotFound();
+
+
+            return View(item);
         }
+
+
     }
 }

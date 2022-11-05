@@ -21,25 +21,28 @@
 
             @foreach(var item in Model)
             {
-      <tr>
+      <form method="post" asp-action="SetAmount">
       
+      <tr>
+      <input type="hidden" asp-for="@item.Id">
 
       <td scope="row">@item.PizzaName</td>
       <td>@item.PizzaIngredients</td>
       <td>$@item.PizzaPrice</td>
-      <form method="post">
-          <input type="hidden" asp-for="@item.Id">
+      
+          
       <td>
           
-          <input type="number" asp-for="@item.Amount" value="@item.Amount" class="form-control">
-          <button  type="submit" class="btn btn-light m-1" asp-action="Update" asp-route-id="@item.Id" >Update Amount</button>
+          <input type="number" value="@item.Amount" class="form-control">
+          <button  type="submit" class="btn btn-light m-1" asp-action="SetAmount" asp-route-Id="@item.Id" >Update Amount</button>
 
           <button  type="submit" class="btn btn-danger m-1">Delete Item</button></td>
           
       <td class="TotalItemPrice" >$@item.CartItemTotal</td>
-      </form>
+      
 
     </tr>
+    </form>
             }
            
 

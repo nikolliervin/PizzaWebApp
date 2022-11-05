@@ -1,0 +1,48 @@
+﻿
+@model PizzaWebApp.Models.CartItems;
+
+<script src="~/js/main.js"></script>
+
+
+<form method="post" asp-action="SetAmountDb">
+
+    
+    <input asp-for="Id" hidden />
+
+    <input asp-for="Pizza" hidden />
+    <input asp-for="PizzaName" hidden />
+    <input asp-for="PizzaIngredients" hidden />
+    <input asp-for="PizzaPrice" hidden />
+    <input asp-for="CartItemTotal" hidden/>
+     
+                            <div class="container mt-5">
+
+            <div class="row text-white">
+                <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+                    
+                    <div class="px-2">
+                        <div class="justify-content-center">
+                            
+                            
+                            <div class="form-group">
+                             <h2 class="text-secondary m-5">Set Amount for @Model.PizzaName</h2>
+                             <img src="/img/pizza.png" width="400" class="mb-3"/>
+
+                                <input asp-for="Amount" type="number" class="form-control" />
+                                
+                            </div>
+                            <div class="form-group">
+                                
+                            </div>
+                            <button type="submit" class="btn btn-light mt-3">Set Amount</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    
+</form>
+                                
+                                  
+                                 
+        
