@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -24,7 +24,7 @@
   <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
 
-  <link href="/css/main.css" rel="stylesheet">
+  <link href="~/css/main.css" rel="stylesheet">
 
 
 </head>
@@ -46,7 +46,13 @@
           
         </ul>
       </nav>
-      <a asp-controller="ShoppingCart" asp-action="Index"><img src="/img/online-shopping.png" class="fa-xs"></a>
+      <a asp-controller="ShoppingCart" asp-action="Index">
+          <div class="d-flex flex-row-reverse">
+            <p class="cartNumber"><strong>@ViewBag.CartNumber</strong></p>
+            <img src="/img/online-shopping.png" class="fa-xs">
+           </div>
+        </a>
+         
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 

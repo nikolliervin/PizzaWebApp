@@ -1693,3 +1693,13 @@ section {
 .footer .credits a {
   color: #fff;
 }
+.cartNumber > p {
+    color: #EB423F;
+    margin-bottom:0;
+    font-weight:bold;
+}
+.cartContainer{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+}

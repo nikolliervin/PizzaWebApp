@@ -4,6 +4,7 @@ using PizzaWebApp.Data;
 using PizzaWebApp.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace PizzaWebApp.Controllers
 {
@@ -20,9 +21,12 @@ namespace PizzaWebApp.Controllers
         public IActionResult Index()
         {
             IEnumerable<Pizza> objList = _db.Pizza;
+            var count = _db.Cart.Count().ToString();
+            if (count == "0")
+                ViewBag.CartNumber = "";
+            ViewBag.CartNumber = $"({count})";
             return View(objList);
         }
-
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
