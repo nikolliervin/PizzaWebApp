@@ -24,7 +24,8 @@ namespace PizzaWebApp.Controllers
             var count = _db.Cart.Count().ToString();
             if (count == "0")
                 ViewBag.CartNumber = "";
-            ViewBag.CartNumber = $"({count})";
+            else
+                ViewBag.CartNumber = $"({count})";
             return View(objList);
         }
 
