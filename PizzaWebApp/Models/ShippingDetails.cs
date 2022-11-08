@@ -19,5 +19,7 @@ namespace PizzaWebApp.Models
         public int ZipCode { get; set; }
 
         public string PhoneNumber { get; set; }
+
+
     }
 }
