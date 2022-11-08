@@ -18,7 +18,6 @@
   </thead>
   <tbody class="cartTable">
 
-
             @foreach(var item in Model)
             {
       <form method="post" asp-action="SetAmount">
@@ -49,9 +48,14 @@
     
     
   </tbody>
-</table>
 
+</table>
+      
 
 
 </div>
 
+
+<div class="d-flex justify-content-center mt-5 mb-5">
+    <h2 class="m-5">@ViewBag.CartEmpty</h2>
+</div>

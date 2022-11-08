@@ -2,6 +2,7 @@
 using PizzaWebApp.Data;
 using PizzaWebApp.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PizzaWebApp.Controllers
 {
@@ -17,7 +18,8 @@ namespace PizzaWebApp.Controllers
         {
 
             IEnumerable<CartItems> objList = _db.Cart;
-
+            if (_db.Cart.Count() == 0)
+                ViewBag.CartEmpty = "Your cart is empty";
             return View(objList);
 
         }

@@ -1,8 +1,14 @@
-﻿namespace PizzaWebApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PizzaWebApp.Models
 {
     public class ShippingDetails
     {
+        [Key]
         public int ShippingId { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         public string Street { get; set; }
 
