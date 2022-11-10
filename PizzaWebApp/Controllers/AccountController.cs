@@ -23,7 +23,11 @@ namespace PizzaWebApp.Controllers
             _identity = identity;
         }
 
-        public IActionResult Register(AppUser newUser)
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Register()
         {
             return View();
 
