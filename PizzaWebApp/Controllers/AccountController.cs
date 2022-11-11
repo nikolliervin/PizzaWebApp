@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaWebApp.Data;
+using System;
+using System.Threading.Tasks;
 
 namespace PizzaWebApp.Controllers
 {
@@ -18,8 +20,8 @@ namespace PizzaWebApp.Controllers
         IdentityAppContext identity)
         {
             _db = db;
-            _userManager = userManager;
-            _signInManager = signInManager;
+            userManager = _userManager;
+            signInManager = _signInManager;
             _identity = identity;
         }
 
@@ -32,5 +34,41 @@ namespace PizzaWebApp.Controllers
             return View();
 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(AppUser NewUser)
+        {
+            try
+            {
+                ViewBag.Message = "User already exists";
+                AppUser user = await userManager.FindByEmailAsync(NewUser.Email);
+                if (user == null)
+                {
+                    user = new AppUser();
+                    user.Email = NewUser.Email;
+                    user.UserName = NewUser.UserName;
+                    IdentityResult result = await userManager.CreateAsync(user, NewUser.PasswordHash);
+                    if (result.Succeeded)
+                        ViewBag.Message = "User was created";
+                    else
+                        ViewBag.Message = result.Errors;
+
+
+
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+                ViewBag.Message = ex.Message;
+            }
+
+            return View();
+
+        }
+
+
     }
 }

@@ -1698,8 +1698,9 @@ section {
     margin-bottom:0;
     font-weight:bold;
 }
-.cartContainer{
-    display:flex;
-    flex-direction:row;
-    justify-content:center;
+.cartContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
+
