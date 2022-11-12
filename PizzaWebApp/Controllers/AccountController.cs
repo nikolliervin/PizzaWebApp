@@ -36,6 +36,7 @@ namespace PizzaWebApp.Controllers
         }
 
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Register(AppUser NewUser)
         {
             try
@@ -49,9 +50,12 @@ namespace PizzaWebApp.Controllers
                     user.UserName = NewUser.UserName;
                     IdentityResult result = await userManager.CreateAsync(user, NewUser.PasswordHash);
                     if (result.Succeeded)
-                        ViewBag.Message = "User was created";
+                    {
+                        ViewBag.Success = "User was created";
+                        await signInManager.SignInAsync(user, isPersistent: false);
+                    }
                     else
-                        ViewBag.Message = result.Errors;
+                        ViewBag.Error = result.Errors;
 
 
 

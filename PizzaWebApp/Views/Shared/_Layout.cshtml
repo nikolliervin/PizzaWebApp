@@ -43,15 +43,19 @@
           <li><a href="#menu">Menu</a></li>
           <li ><a asp-controller="AboutUs" asp-action="Index" >About</a></li>        
           <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
-          
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Welcome, @User.Identity.Name
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+            
+          </ul>
+        </li>
         </ul>
       </nav>
-      <a asp-controller="ShoppingCart" asp-action="Index">
-          <div class="d-flex flex-row-reverse">
-            <p class="cartNumber"><strong>@ViewBag.CartNumber</strong></p>
-            <img src="/img/online-shopping.png" class="fa-xs">
-           </div>
-        </a>
+
+      
          
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
@@ -126,9 +130,14 @@
     </div>
 
   </footer>
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><img src="/img/online-shopping.png"></a>
 
 
+    <a asp-controller="ShoppingCart" asp-action="Index" class="scroll-top d-flex align-items-center justify-content-center">
+          <div class="d-flex flex-row-reverse">
+            <p class="cartNumber"><strong>@ViewBag.CartNumber</strong></p>
+            <img src="/img/online-shopping.png" class="fa-xs">
+           </div>
+        </a>
   <!-- Vendor JS Files -->
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/vendor/aos/aos.js"></script>
