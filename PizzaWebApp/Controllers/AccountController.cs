@@ -70,7 +70,7 @@ namespace PizzaWebApp.Controllers
                 ViewBag.Message = ex.Message;
             }
 
-            return View();
+            return RedirectToAction("Index", "Home");
 
         }
 
