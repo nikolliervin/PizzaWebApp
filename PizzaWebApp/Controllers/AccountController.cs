@@ -76,9 +76,32 @@ namespace PizzaWebApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", false);
         }
 
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> LogUserIn(AppUser user)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                var result = await userManager.FindByNameAsync(user.UserName);
+                if (result == null)
+                {
+                    ViewBag.Error = "Your password or username was not correct";
+
+                }
+                else
+                {
+                    await signInManager.PasswordSignInAsync(user.UserName, user.PasswordHash, false, false);
+
+                }
+            }
+
+
+            return View();
+
+        }
 
     }
 }
