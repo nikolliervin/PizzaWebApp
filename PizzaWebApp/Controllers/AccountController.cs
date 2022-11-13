@@ -35,6 +35,7 @@ namespace PizzaWebApp.Controllers
 
         }
 
+
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Register(AppUser NewUser)
@@ -76,16 +77,22 @@ namespace PizzaWebApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home", false);
+            return RedirectToAction("Login");
         }
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> LogUserIn(AppUser user)
+        public async Task<IActionResult> Login(AppUser user)
         {
+            var login = new AppUser
+            {
+                UserName = user.UserName,
+                PasswordHash = user.PasswordHash,
+            };
+
             if (!User.Identity.IsAuthenticated)
             {
-                var result = await userManager.FindByNameAsync(user.UserName);
+                var result = await userManager.FindByNameAsync(login.UserName);
                 if (result == null)
                 {
                     ViewBag.Error = "Your password or username was not correct";
@@ -93,13 +100,13 @@ namespace PizzaWebApp.Controllers
                 }
                 else
                 {
-                    await signInManager.PasswordSignInAsync(user.UserName, user.PasswordHash, false, false);
+                    await signInManager.PasswordSignInAsync(login.UserName, login.PasswordHash, false, false);
 
                 }
             }
 
 
-            return View();
+            return RedirectToAction("Index", "Home");
 
         }
 
