@@ -54,7 +54,7 @@ namespace PizzaWebApp.Controllers
         [HttpPost]
         public IActionResult AddAddress(ShippingAddress obj)
         {
-            var user = new AppUser();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var address = new ShippingAddress
             {
@@ -64,7 +64,7 @@ namespace PizzaWebApp.Controllers
                 Name = obj.Name,
                 Surname = obj.Surname,
                 PhoneNumber = obj.PhoneNumber,
-                UserID = user.Id
+                UserID = Convert.ToInt32(userId)
             };
 
             if (ModelState.IsValid)
