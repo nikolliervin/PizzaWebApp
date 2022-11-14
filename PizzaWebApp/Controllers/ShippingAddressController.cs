@@ -9,25 +9,37 @@ namespace PizzaWebApp.Controllers
     public class ShippingAddressController : Controller
     {
         private readonly ApplicationDBContext _db;
-        private readonly AppUser _user;
 
 
-        public ShippingAddressController(ApplicationDBContext context, AppUser user)
+
+        public ShippingAddressController(ApplicationDBContext context)
         {
             _db = context;
-            _user = user;
+
         }
         public IActionResult Index()
         {
-            var CurrentUserID = _user.Id;
+            var user = new AppUser();
+            var currentUserId = user.Id;
             IEnumerable<ShippingAddress> shippingAddresses = _db
-            .ShippingDetails
-            .Where(s => s.UserID == CurrentUserID);
+            .ShippingDetails.Where(s => s.UserID == currentUserId);
 
-            if (shippingAddresses == null)
-                ViewBag.Message = "You don't have a shipping Address";
+            if (shippingAddresses?.Any() != true)
+            {
+                ViewBag.NewUser = true;
+            }
+
+
 
             return View(shippingAddresses);
+
+
+
+        }
+
+        public IActionResult Add(ShippingAddress obj)
+        {
+
         }
     }
 }
