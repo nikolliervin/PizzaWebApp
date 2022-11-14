@@ -37,9 +37,25 @@ namespace PizzaWebApp.Controllers
 
         }
 
-        public IActionResult Add(ShippingAddress obj)
+        public IActionResult AddAddress(ShippingAddress obj)
         {
+            var user = new AppUser();
 
+            var address = new ShippingAddress
+            {
+                Street = obj.Street,
+                City = obj.City,
+                PostalCode = obj.PostalCode,
+                Name = obj.Name,
+                Surname = obj.Surname,
+                PhoneNumber = obj.PhoneNumber,
+                UserID = user.Id
+            };
+
+            _db.ShippingDetails.Add(address);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }
