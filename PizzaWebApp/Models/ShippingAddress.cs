@@ -1,9 +1,10 @@
-﻿using PizzaWebApp.Data;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PizzaWebApp.Models
 {
     public class ShippingAddress
     {
+        [Key]
         public int Id { get; set; }
 
         public string Street { get; set; }
@@ -20,7 +21,7 @@ namespace PizzaWebApp.Models
 
         public string PhoneNumber { get; set; }
 
-        public AppUser User { get; set; }
+        public int UserID { get; set; }
 
 
     }

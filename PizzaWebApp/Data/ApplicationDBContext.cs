@@ -17,5 +17,7 @@ namespace PizzaWebApp.Data
 
         public DbSet<CartItems> Cart { get; set; }
 
+        public DbSet<ShippingAddress> ShippingDetails { get; set; }
+
     }
 }
