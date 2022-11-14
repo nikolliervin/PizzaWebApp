@@ -3,7 +3,6 @@ using PizzaWebApp.Data;
 using PizzaWebApp.Models;
 using System.Collections.Generic;
 using System.Linq;
-
 namespace PizzaWebApp.Controllers
 {
     public class ShippingAddressController : Controller
@@ -19,7 +18,9 @@ namespace PizzaWebApp.Controllers
         }
         public IActionResult Index()
         {
+            //TODO Fix Getting the currenlty logged in user id
             var user = new AppUser();
+
             IEnumerable<ShippingAddress> shippingAddresses = _db
             .ShippingDetails.Where(s => s.UserID == user.Id);
 

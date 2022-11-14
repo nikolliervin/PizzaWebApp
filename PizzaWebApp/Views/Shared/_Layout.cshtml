@@ -48,8 +48,9 @@
             Welcome, @User.Identity.Name
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
              <li><a class="dropdown-item" asp-controller="ShippingAddress" asp-action="Index">Shipping Details</a></li>
+              
+              <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
             
           </ul>
         </li>

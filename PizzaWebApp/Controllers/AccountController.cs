@@ -52,6 +52,7 @@ namespace PizzaWebApp.Controllers
                     user.UserName = NewUser.UserName;
 
 
+
                     IdentityResult result = await userManager.CreateAsync(user, NewUser.PasswordHash);
                     if (result.Succeeded)
                     {
