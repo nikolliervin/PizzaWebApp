@@ -42,21 +42,25 @@ namespace PizzaWebApp.Controllers
         {
             try
             {
-                ViewBag.Message = "User already exists";
+                ViewBag.Message = "A user with that username exists or the password was not in the correct format";
+
                 AppUser user = await userManager.FindByEmailAsync(NewUser.Email);
                 if (user == null)
                 {
                     user = new AppUser();
                     user.Email = NewUser.Email;
                     user.UserName = NewUser.UserName;
+
+
                     IdentityResult result = await userManager.CreateAsync(user, NewUser.PasswordHash);
                     if (result.Succeeded)
                     {
-                        ViewBag.Success = "User was created";
                         await signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToAction("Index", "Home");
+
                     }
                     else
-                        ViewBag.Error = result.Errors;
+                        ViewBag.Error = "Account creating failed, please try again";
 
 
 
@@ -70,8 +74,7 @@ namespace PizzaWebApp.Controllers
                 ViewBag.Message = ex.Message;
             }
 
-            return RedirectToAction("Index", "Home");
-
+            return View();
         }
 
         public async Task<IActionResult> Logout()
@@ -96,13 +99,14 @@ namespace PizzaWebApp.Controllers
                 if (result == null)
                 {
                     ViewBag.Error = "Your password or username was not correct";
-
+                    return View();
                 }
                 else
                 {
                     await signInManager.PasswordSignInAsync(login.UserName, login.PasswordHash, false, false);
 
                 }
+
             }
 
 
