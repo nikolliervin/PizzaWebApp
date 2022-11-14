@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PizzaWebApp.Data;
 using PizzaWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+
 namespace PizzaWebApp.Controllers
 {
     public class ShippingAddressController : Controller
@@ -18,11 +21,11 @@ namespace PizzaWebApp.Controllers
         }
         public IActionResult Index()
         {
-            //TODO Fix Getting the currenlty logged in user id
-            var user = new AppUser();
 
+            var user = new AppUser();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             IEnumerable<ShippingAddress> shippingAddresses = _db
-            .ShippingDetails.Where(s => s.UserID == user.Id);
+            .ShippingDetails.Where(s => s.UserID == Convert.ToInt32(userId));
 
             if (shippingAddresses?.Any() != true)
             {
