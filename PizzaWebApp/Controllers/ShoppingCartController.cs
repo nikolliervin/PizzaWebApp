@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PizzaWebApp.Data;
 using PizzaWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -52,7 +53,7 @@ namespace PizzaWebApp.Controllers
                 PizzaName = item.PizzaName,
                 PizzaIngredients = item.PizzaIngredients,
                 PizzaPrice = item.PizzaPrice,
-                CartItemTotal = item.Amount * item.PizzaPrice
+                CartItemTotal = Math.Round(item.Amount * item.PizzaPrice, 2)
 
             };
 
