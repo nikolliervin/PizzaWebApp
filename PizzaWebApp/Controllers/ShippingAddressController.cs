@@ -20,23 +20,34 @@ namespace PizzaWebApp.Controllers
         public IActionResult Index()
         {
             var user = new AppUser();
-            var currentUserId = user.Id;
             IEnumerable<ShippingAddress> shippingAddresses = _db
-            .ShippingDetails.Where(s => s.UserID == currentUserId);
+            .ShippingDetails.Where(s => s.UserID == user.Id);
 
             if (shippingAddresses?.Any() != true)
             {
                 ViewBag.NewUser = true;
+                return View();
+            }
+            else
+            {
+                ViewBag.NewUser = false;
+                return View(shippingAddresses);
+
             }
 
 
-
-            return View(shippingAddresses);
 
 
 
         }
 
+
+        public IActionResult AddAddress()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult AddAddress(ShippingAddress obj)
         {
             var user = new AppUser();
@@ -52,10 +63,14 @@ namespace PizzaWebApp.Controllers
                 UserID = user.Id
             };
 
-            _db.ShippingDetails.Add(address);
-            _db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _db.ShippingDetails.Add(address);
+                _db.SaveChanges();
+            }
 
-            return RedirectToAction("Index");
+
+            return View();
         }
     }
 }

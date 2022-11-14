@@ -11,13 +11,13 @@
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                <form class="mx-1 mx-md-4 mb-5" method="post" asp-action="Register">
+                <form class="mx-1 mx-md-4 mb-5" method="post" asp-action="AddAddress">
 
                   <div class="d-flex flex-row align-items-center mb-3">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="form3Example3c">Street</label>
-                        <input type="email" id="email" class="form-control" asp-for="@Model.Street" />
+                        <input type="text" class="form-control" asp-for="@Model.Street" />
                     </div>
                   </div>
 
@@ -25,7 +25,7 @@
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="form3Example4c">City</label>
-                        <input type="text" id="username" class="form-control" asp-for="@Model.City" />                      
+                        <input type="text"  class="form-control" asp-for="@Model.City" />                      
                     </div>
                   </div>
 
@@ -33,7 +33,7 @@
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="form3Example4cd">PostalCode</label>
-                        <input type="text" id="text" class="form-control" asp-for="@Model.PostalCode" />        
+                        <input type="text" class="form-control" asp-for="@Model.PostalCode" />        
                     </div>
                   </div>
 
@@ -41,7 +41,7 @@
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="form3Example4cd">Name</label>
-                        <input type="text" id="text" class="form-control" asp-for="@Model.Name" />        
+                        <input type="text" class="form-control" asp-for="@Model.Name" />        
                     </div>
                   </div>
 
@@ -49,7 +49,7 @@
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="form3Example4cd">Surname</label>
-                        <input type="text" id="text" class="form-control" asp-for="@Model.Surname" />        
+                        <input type="text" class="form-control" asp-for="@Model.Surname" />        
                     </div>
                   </div>
 
@@ -57,14 +57,14 @@
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="form3Example4cd">PostalCode</label>
-                        <input type="tel" id="text" class="form-control" asp-for="@Model.PhoneNumber" />        
+                        <input type="tel" class="form-control" asp-for="@Model.PhoneNumber" />        
                     </div>
                   </div>
                
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       
-                    <button type="submit" class="btn btn-primary btn-lg"asp-controller="Account" asp-action="Register">Add Address</button>
+                    <button type="submit" class="btn btn-primary btn-lg" asp-controller="ShippingAddress" asp-action="AddAddress">Add Address</button>
                   </div>
                   
                   
@@ -73,7 +73,7 @@
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                <img src="/img/pizzahero.png"
+                <img src="/img/delivery.jpg
                   class="img-fluid" alt="Sample image">
 
               </div>
