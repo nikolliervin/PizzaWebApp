@@ -83,5 +83,30 @@ namespace PizzaWebApp.Controllers
             return View(obj);
         }
 
+        [HttpPost]
+        public IActionResult Update(ShippingAddress address)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var ShippingAddress = new ShippingAddress
+            {
+                Id = address.Id,
+                Street = address.Street,
+                City = address.City,
+                PostalCode = address.PostalCode,
+                Name = address.Name,
+                Surname = address.Surname,
+                PhoneNumber = address.PhoneNumber,
+                UserID = Convert.ToInt32(userId)
+
+            };
+            if (ModelState.IsValid)
+            {
+                _db.ShippingDetails.Update(ShippingAddress);
+                _db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+
+        }
     }
 }
