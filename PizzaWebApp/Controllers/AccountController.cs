@@ -84,6 +84,7 @@ namespace PizzaWebApp.Controllers
             return RedirectToAction("Login");
         }
 
+        //TODO:Refactor the messy method
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Login(AppUser user)
@@ -99,12 +100,19 @@ namespace PizzaWebApp.Controllers
                 var result = await userManager.FindByNameAsync(login.UserName);
                 if (result == null)
                 {
-                    ViewBag.Error = "Your password or username was not correct";
+                    ViewBag.Error = "An account with that username was not found";
+
                     return View();
+
                 }
                 else
                 {
-                    await signInManager.PasswordSignInAsync(login.UserName, login.PasswordHash, false, false);
+                    var loginResult = await signInManager.PasswordSignInAsync(login.UserName, login.PasswordHash, false, false);
+                    if (!loginResult.Succeeded)
+                    {
+                        ViewBag.Error = "Your username or password was incorrect";
+                        return View();
+                    }
 
                 }
 
