@@ -76,5 +76,12 @@ namespace PizzaWebApp.Controllers
 
             return View();
         }
+
+        public IActionResult Update(int? id)
+        {
+            var obj = _db.ShippingDetails.Find(id);
+            return View(obj);
+        }
+
     }
 }
