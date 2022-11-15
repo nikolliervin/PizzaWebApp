@@ -52,6 +52,7 @@ namespace PizzaWebApp.Controllers
         }
 
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public IActionResult AddAddress(ShippingAddress obj)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -83,6 +84,7 @@ namespace PizzaWebApp.Controllers
             return View(obj);
         }
 
+        [AutoValidateAntiforgeryToken]
         [HttpPost]
         public IActionResult Update(ShippingAddress address)
         {
