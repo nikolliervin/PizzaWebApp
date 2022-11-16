@@ -14,6 +14,8 @@
 
         public double CartItemTotal { get; set; }
 
+        public int UserId { get; set; }
+
 
     }
 }
