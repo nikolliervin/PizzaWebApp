@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PizzaWebApp.Data;
 using PizzaWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 
 namespace PizzaWebApp.Controllers
 {
@@ -21,12 +22,14 @@ namespace PizzaWebApp.Controllers
 
         public IActionResult Index()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             IEnumerable<Pizza> objList = _db.Pizza;
-            var count = _db.Cart.Count().ToString();
+            var count = _db.Cart.
+                Where(c => c.UserId == Convert.ToInt32(userId)).Count().ToString();
             if (count == "0")
                 ViewBag.CartNumber = "";
             else
-                ViewBag.CartNumber = $"({count})";
+                ViewBag.CartNumber = $"{count}";
             return View(objList);
         }
 
@@ -38,12 +41,13 @@ namespace PizzaWebApp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [Authorize]
+        //[Authorize]
+
         [HttpPost]
         public IActionResult AddToCart(int? id)
         {
             var PizzaItem = _db.Pizza.Find(id);
-
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             CartItems item = new CartItems
             {
                 Amount = 1,
@@ -52,6 +56,7 @@ namespace PizzaWebApp.Controllers
                 PizzaIngredients = PizzaItem.Ingredients,
                 PizzaPrice = PizzaItem.Price,
                 CartItemTotal = PizzaItem.Price,
+                UserId = Convert.ToInt32(userId)
 
             };
 
@@ -63,6 +68,8 @@ namespace PizzaWebApp.Controllers
 
             return RedirectToAction("Index");
         }
+
+
 
 
     }

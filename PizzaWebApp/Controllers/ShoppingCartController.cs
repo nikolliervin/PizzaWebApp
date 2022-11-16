@@ -4,6 +4,7 @@ using PizzaWebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace PizzaWebApp.Controllers
 {
@@ -17,9 +18,9 @@ namespace PizzaWebApp.Controllers
         }
         public IActionResult Index()
         {
-
-            IEnumerable<CartItems> objList = _db.Cart;
-            if (_db.Cart.Count() == 0)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            IEnumerable<CartItems> objList = _db.Cart.Where(c => c.UserId == Convert.ToInt32(userId));
+            if (_db.Cart.Where(c => c.UserId == Convert.ToInt32(userId)).Count() == 0)
                 ViewBag.CartEmpty = "Your cart is empty";
             return View(objList);
 
