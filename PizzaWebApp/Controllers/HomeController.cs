@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PizzaWebApp.Data;
 using PizzaWebApp.Models;
@@ -41,8 +42,7 @@ namespace PizzaWebApp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        //[Authorize]
-
+        [Authorize]
         [HttpPost]
         public IActionResult AddToCart(int? id)
         {
