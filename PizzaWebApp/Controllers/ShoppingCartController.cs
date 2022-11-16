@@ -22,6 +22,11 @@ namespace PizzaWebApp.Controllers
             IEnumerable<CartItems> objList = _db.Cart.Where(c => c.UserId == Convert.ToInt32(userId));
             if (_db.Cart.Where(c => c.UserId == Convert.ToInt32(userId)).Count() == 0)
                 ViewBag.CartEmpty = "Your cart is empty";
+
+            IEnumerable<double> cartItemPrices = _db.Cart
+            .Where(c => c.UserId == Convert.ToInt32(userId))
+            .Select(c => c.CartItemTotal);
+            ViewBag.Subtotal = cartItemPrices.Sum();
             return View(objList);
 
         }
