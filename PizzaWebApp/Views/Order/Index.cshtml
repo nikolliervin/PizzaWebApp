@@ -1,4 +1,5 @@
-﻿  
+﻿@model IEnumerable<PizzaWebApp.Models.CartItems>
+
 <script src="~/js/main.js"></script>
 
 <div class="d-flex flex-column">
@@ -20,26 +21,28 @@
 
             
             
-      <form method="post" asp-action="SetAmount">
+       @foreach(var item in Model)
+            {
+     
       
       <tr>
-      <input type="hidden" >
+      <input type="hidden" asp-for="@item.Id">
 
-      <td scope="row">PizzaName</td>
-      <td>PizzaIngredients</td>
-      <td>PizzaPrice</td>
+      <td scope="row">@item.PizzaName</td>
+      <td>@item.PizzaIngredients</td>
+      <td>$@item.PizzaPrice</td>
       
           
       <td>
           
-          <label class="form-control">Amount</label>
-         
+          @item.Amount
           
-      <td class="TotalItemPrice" >CartItemTotal</td>
+      <td class="TotalItemPrice" >$@item.CartItemTotal</td>
       
-
+      
     </tr>
-    </form>
+    
+            }
             
 
     
@@ -72,26 +75,26 @@
 
 <div class="p-2">
     <h3 class="mb-4">Address Details</h3>
-    <form>
+                                                       @* TODO: Refactor using viewmodels*@
                                     
                                          <div class="d-flex flex-row align-items-center mb-3">
                                          <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <div class="d-flex flex-column">
-                                            <label class="form-label" for="form3Example3c"><strong class="shippingDetails">Street: </strong>Street</label>
-                                            <label class="form-label" for="form3Example3c"><strong>City: </strong>City</label>
-                                            <label class="form-label" for="form3Example3c"><strong>Postal Code: </strong>PostalCode</label>
-                                            <label class="form-label" for="form3Example3c"><strong>Name: </strong>Name</label>
-                                            <label class="form-label" for="form3Example3c"><strong>Surname: </strong>Surname</label>
-                                            <label class="form-label" for="form3Example3c"><strong>Phone Number: </strong>PhoneNumber</label>
+                                            <label class="form-label" for="form3Example3c"><strong class="shippingDetails">Street: </strong>@ViewBag.ShDetails.Street</label>
+                                            <label class="form-label" for="form3Example3c"><strong>City: </strong>@ViewBag.ShDetails.City</label>
+                                            <label class="form-label" for="form3Example3c"><strong>Postal Code: </strong>@ViewBag.ShDetails.PostalCode</label>
+                                            <label class="form-label" for="form3Example3c"><strong>Name: </strong>@ViewBag.ShDetails.Name</label>
+                                            <label class="form-label" for="form3Example3c"><strong>Surname: </strong>@ViewBag.ShDetails.Surname</label>
+                                            <label class="form-label" for="form3Example3c"><strong>Phone Number: </strong>@ViewBag.ShDetails.PhoneNumber</label>
                                         </div>
                                         </div>
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          
-                                            @*<button class="btn btn-primary btn-lg" asp-controller="ShippingAddress" asp-action="Update" asp-route-Id="">Update Address</button>*@
+                                            <button class="btn btn-outline-info m-3" asp-controller="ShippingAddress" asp-action="Index">Review Address</button>
+                                            <button class="btn btn-outline-info m-3" asp-controller="ShippingAddress" asp-action="Index">Review Cart</button>
+                                            <button class="btn btn-outline-success m-3" asp-controller="ShippingAddress" asp-action="Index">Confirm Order</button>
+                                            
                                         </div>
-                                    </form>
+                                    
 </div>
 </div>
-<div class="d-flex justify-content-center mt-5 mb-5">
-    <h2 class="m-5 ">@ViewBag.CartEmpty</h2>
 </div>
