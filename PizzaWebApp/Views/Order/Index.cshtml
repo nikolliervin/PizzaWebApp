@@ -2,6 +2,8 @@
 
 <script src="~/js/main.js"></script>
 
+<form method="post" asp-action="SubmitOrder">
+
 <div class="d-flex flex-column">
 <div class="mt-5 mb-3 pt-5 pb-3 p-2">
     <h3 class="mb-4">Order overview</h3>
@@ -90,11 +92,17 @@
                                         </div>
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                             <button class="btn btn-outline-info m-3" asp-controller="ShippingAddress" asp-action="Index">Review Address</button>
-                                            <button class="btn btn-outline-info m-3" asp-controller="ShippingAddress" asp-action="Index">Review Cart</button>
-                                            <button class="btn btn-outline-success m-3" asp-controller="ShippingAddress" asp-action="Index">Confirm Order</button>
+                                            <button class="btn btn-outline-info m-3" asp-controller="ShoppingCart" asp-action="Index">Review Cart</button>
+                                            <button type="submit" class="btn btn-outline-success m-3" asp-controller="Order" asp-action="SubmitOrder">Confirm Order</button>
                                             
                                         </div>
-                                    
+                                        
+                                        <div class="flex-column justify-content-center mx-4 mb-3 mb-lg-4">
+                                            <p class="text-danger text-center">@ViewBag.Message</p>
+                                        </div>
 </div>
 </div>
 </div>
+
+
+                                            </form>

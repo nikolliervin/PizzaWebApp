@@ -6,7 +6,7 @@ namespace PizzaWebApp.Models
     {
         public int Id { get; set; }
 
-        public int CartId { get; set; }
+        public int PizzaId { get; set; }
 
         public int UserId;
 

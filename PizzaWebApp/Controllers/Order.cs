@@ -26,5 +26,32 @@ namespace PizzaWebApp.Controllers
 
             return View(cartItems);
         }
+
+        public IActionResult SubmitOrder(CartItems item)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var ShippingId = _db.ShippingDetails.Where(s => s.UserID == Convert.ToInt32(User)).Select(u => u.Id);
+            var totalPrice = Convert.ToDouble(_db.Cart.Where(c => c.UserId == Convert.ToInt32(userId)).Select(c => c.CartItemTotal).Sum());
+
+            var order = new Orders
+            {
+                PizzaId = Convert.ToInt32(item.Pizza),
+                ShippingId = Convert.ToInt32(ShippingId),
+                Date = DateTime.Now,
+                Price = totalPrice
+
+            };
+            if (ModelState.IsValid)
+            {
+                _db.Orders.Add(order);
+                _db.SaveChanges();
+                ViewBag.Message = "Your order was confirmed. You will be contacted by us soon";
+            }
+            else
+            {
+                ViewBag.Message = "There was a problem while confirming the order";
+            }
+            return View();
+        }
     }
 }
