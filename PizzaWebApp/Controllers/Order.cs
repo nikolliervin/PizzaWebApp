@@ -29,28 +29,33 @@ namespace PizzaWebApp.Controllers
 
         public IActionResult SubmitOrder(CartItems item)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var ShippingId = _db.ShippingDetails.Where(s => s.UserID == Convert.ToInt32(User)).Select(u => u.Id);
+            var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var ShippingId = _db.ShippingDetails.Where(s => s.UserID == userId).Select(c => c.Id);
             var totalPrice = Convert.ToDouble(_db.Cart.Where(c => c.UserId == Convert.ToInt32(userId)).Select(c => c.CartItemTotal).Sum());
+            List<string> pizzas = _db.Cart.Where(c => c.UserId == userId).Select(c => c.PizzaName).ToList();
+            List<int> amounts = _db.Cart.Where(c => c.UserId == userId).Select(c => c.Amount).ToList();
+            var orderDesc = "";
 
-            var order = new Orders
+
+            for (int i = 0; i < pizzas.Count; i++)
             {
-                PizzaId = Convert.ToInt32(item.Pizza),
+                orderDesc += pizzas[i] + " " + amounts[i] + ", ";
+            }
+
+            var Order = new Orders
+            {
                 ShippingId = Convert.ToInt32(ShippingId),
                 Date = DateTime.Now,
-                Price = totalPrice
-
+                Price = totalPrice,
+                OrderDesc = orderDesc
             };
+
             if (ModelState.IsValid)
             {
-                _db.Orders.Add(order);
+                _db.Orders.Add(Order);
                 _db.SaveChanges();
-                ViewBag.Message = "Your order was confirmed. You will be contacted by us soon";
             }
-            else
-            {
-                ViewBag.Message = "There was a problem while confirming the order";
-            }
+
             return View();
         }
     }
