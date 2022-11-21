@@ -27,7 +27,7 @@ namespace PizzaWebApp.Controllers
             return View(cartItems);
         }
 
-        public IActionResult SubmitOrder(CartItems item)
+        public IActionResult SubmitOrder()
         {
             var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
             var ShippingId = _db.ShippingDetails.Where(s => s.UserID == userId).Select(c => c.Id).ToList()[0];
