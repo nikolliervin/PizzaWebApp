@@ -25,6 +25,8 @@ namespace PizzaWebApp
                 options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<IdentityAppContext>();
 
+
+
             services.AddDbContext<ApplicationDBContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<IdentityAppContext>(options =>
