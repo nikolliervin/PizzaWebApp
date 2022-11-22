@@ -28,34 +28,51 @@ namespace PizzaWebApp.Controllers
             roleManager = roles;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         public IActionResult Login()
         {
             return View();
         }
 
-        public async Task<IActionResult> Index()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(AppUser user)
         {
-            //var user = new AppUser();
-            //user.Email = "admin@pizza.com";
-            //user.UserName = "admin";
-
-            var admin = new AppRole()
+            var adminUser = new AppUser
             {
-                Name = "Admin",
-                NormalizedName = "ADMIN",
-
+                UserName = user.UserName,
+                PasswordHash = user.PasswordHash
             };
-            var user = _identity.Users.Find(18);
-            //await roleManager.CreateAsync(admin);
-            await userManager.AddToRoleAsync(user, "Admin");
+
+            var result = await userManager.FindByNameAsync(adminUser.UserName);
+            var isUserAdmin = userManager.IsInRoleAsync(adminUser.Id, "Admin");
+            if (result != null && isUserAdmin != null)
+            {
+                var loginResult = await signInManager.PasswordSignInAsync(adminUser.UserName, adminUser.PasswordHash, false, false);
+                if (!loginResult.Succeeded)
+                {
+                    ViewBag.Message = "Your admin username or admin password was not correct";
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Your admin username or admin password was not correct";
+                return View();
+
+            }
 
 
-
-
-
-
-            return View();
         }
+
+
     }
 }
