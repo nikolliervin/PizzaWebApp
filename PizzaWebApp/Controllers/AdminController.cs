@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaWebApp.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PizzaWebApp.Controllers
@@ -47,10 +48,11 @@ namespace PizzaWebApp.Controllers
                 UserName = user.UserName,
                 PasswordHash = user.PasswordHash
             };
+            var userId = _identity.Users.Where(u => u.UserName == "Admin").Select(s => s.Id).ToList()[0];
+            var role = _identity.UserRoles.Where(s => s.UserId == userId).Select(s => s.RoleId).ToList()[0];
 
-            var result = await userManager.FindByNameAsync(adminUser.UserName);
-            var isUserAdmin = userManager.IsInRoleAsync(adminUser.Id, "Admin");
-            if (result != null && isUserAdmin != null)
+
+            if (role == 1)
             {
                 var loginResult = await signInManager.PasswordSignInAsync(adminUser.UserName, adminUser.PasswordHash, false, false);
                 if (!loginResult.Succeeded)
