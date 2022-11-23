@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaWebApp.Data;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,21 +44,38 @@ namespace PizzaWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(AppUser user)
         {
+            var Message = "Your admin username or admin password was not correct";
             var adminUser = new AppUser
             {
                 UserName = user.UserName,
                 PasswordHash = user.PasswordHash
             };
-            var userId = _identity.Users.Where(u => u.UserName == "Admin").Select(s => s.Id).ToList()[0];
-            var role = _identity.UserRoles.Where(s => s.UserId == userId).Select(s => s.RoleId).ToList()[0];
+
+            var userId = _identity.Users.Where(u => u.UserName == adminUser.UserName).Select(s => s.Id).ToList()[0];
+            var role = _identity.UserRoles.Where(s => s.UserId == userId).Select(s => s.RoleId);
+
+            try
+            {
+                var roleId = role.ToList()[0];
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = "This account is not an admin account";
+                return View();
+            }
 
 
-            if (role == 1)
+
+
+
+
+            if (role.ToList()[0] == 1)
             {
                 var loginResult = await signInManager.PasswordSignInAsync(adminUser.UserName, adminUser.PasswordHash, false, false);
                 if (!loginResult.Succeeded)
                 {
-                    ViewBag.Message = "Your admin username or admin password was not correct";
+                    ViewBag.Message = Message;
                     return View();
                 }
                 else
@@ -67,7 +85,7 @@ namespace PizzaWebApp.Controllers
             }
             else
             {
-                ViewBag.Message = "Your admin username or admin password was not correct";
+                ViewBag.Message = Message;
                 return View();
 
             }
