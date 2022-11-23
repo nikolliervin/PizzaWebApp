@@ -44,6 +44,7 @@ namespace PizzaWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(AppUser user)
         {
+            //@TODO:Simplyfy the method
             var Message = "Your admin username or admin password was not correct";
             var adminUser = new AppUser
             {
