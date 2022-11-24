@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PizzaWebApp.Data;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,8 +33,29 @@ namespace PizzaWebApp.Controllers
 
         public IActionResult Index()
         {
+            var todayDate = DateTime.Now.ToString("yyyy-MM-dd");
+            var todayOrderCount = 0;
+            var totalOrderCount = 0;
+            List<string> dates = _db.Orders.Select(o => o.Date.ToString()).ToList();
+
+            foreach (var item in dates)
+            {   
+                totalOrderCount++;
+                if (item.Contains(todayDate))
+                    todayOrderCount++;
+
+            }
+
+            ViewBag.TodayOrders = todayOrderCount;
+            ViewBag.TotalOrders= dates.Count;
+
+
             return View();
         }
+
+        
+
+    
 
         public IActionResult Login()
         {
