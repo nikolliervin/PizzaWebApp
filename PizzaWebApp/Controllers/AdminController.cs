@@ -118,7 +118,7 @@ namespace PizzaWebApp.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    return View("Index");
                 }
             }
             else
