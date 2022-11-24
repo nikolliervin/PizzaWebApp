@@ -34,28 +34,35 @@ namespace PizzaWebApp.Controllers
         public IActionResult Index()
         {
             var todayDate = DateTime.Now.ToString("yyyy-MM-dd");
-            var todayOrderCount = 0;
-            var totalOrderCount = 0;
-            List<string> dates = _db.Orders.Select(o => o.Date.ToString()).ToList();
+            List<string> orderDates = _db.Orders.Select(o => o.Date.ToString()).ToList();
+            List<string> bookingDates = _db.Bookings.Select(o => o.Date).ToList();
 
-            foreach (var item in dates)
-            {   
-                totalOrderCount++;
-                if (item.Contains(todayDate))
-                    todayOrderCount++;
 
-            }
-
-            ViewBag.TodayOrders = todayOrderCount;
-            ViewBag.TotalOrders= dates.Count;
-
+            ViewBag.TodayOrders = CountOrderWhere(orderDates, todayDate);
+            ViewBag.TotalOrders = orderDates.Count;
+            ViewBag.TotalUsers = _identity.Users.Select(o => o.Id).ToList().Count;
+            ViewBag.TableBookings = bookingDates.Count;
+            ViewBag.TodayBookings = CountOrderWhere(bookingDates, todayDate);
 
             return View();
         }
 
-        
+        public int CountOrderWhere(List<string> orders, string date)
+        {
+            var counter = 0;
+            foreach (var item in orders)
+            {
+                if (item.Contains(date))
+                    counter++;
 
-    
+            }
+
+            return counter;
+        }
+
+
+
+
 
         public IActionResult Login()
         {
