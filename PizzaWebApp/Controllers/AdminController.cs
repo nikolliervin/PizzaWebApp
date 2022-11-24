@@ -36,13 +36,21 @@ namespace PizzaWebApp.Controllers
             var todayDate = DateTime.Now.ToString("yyyy-MM-dd");
             List<string> orderDates = _db.Orders.Select(o => o.Date.ToString()).ToList();
             List<string> bookingDates = _db.Bookings.Select(o => o.Date).ToList();
-
+            List<double> revenue = _db.Orders.Select(o => o.Price).ToList();
+            List<double> todayRevenue =
+                _db.Orders.Where(o => o.Date.ToString()
+                .Contains(todayDate))
+                .Select(o => o.Price)
+                .ToList();
 
             ViewBag.TodayOrders = CountOrderWhere(orderDates, todayDate);
             ViewBag.TotalOrders = orderDates.Count;
             ViewBag.TotalUsers = _identity.Users.Select(o => o.Id).ToList().Count;
             ViewBag.TableBookings = bookingDates.Count;
             ViewBag.TodayBookings = CountOrderWhere(bookingDates, todayDate);
+            ViewBag.Revenue = revenue.Sum().ToString("0.00");
+            ViewBag.RevenueToday = todayRevenue.Sum();
+
 
             return View();
         }

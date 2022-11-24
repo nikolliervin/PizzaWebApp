@@ -1,32 +1,71 @@
 ﻿
-        <div class="d-flex mt-5">
-        
-            <div class="border-end bg-white" id="sidebar-wrapper">
-                
-                <div class="list-group list-group-flush mt-5 mb-2">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Orders</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Table Bookings</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Contacts</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Users</a>
-                </div>
-            </div>
-            
-            <div id="page-content-wrapper" class="mt-lg-5">
-                
-               
-                
-                <div class="container-fluid">
-                    <h1 class="mt-4">Simple Sidebar</h1>
-                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                    <p>
-                        Make sure to keep all page content within the
-                        <code>#page-content-wrapper</code>
-                        . The top navbar is optional, and just for demonstration. Just create an element with the
-                        <code>#sidebarToggle</code>
-                        ID which will toggle the menu when clicked.
-                    </p>
-                </div>
-            </div>
-        </div>
-       
-       
+<div class="d-flex mt-5">
+
+	<div class="border-end bg-white" id="sidebar-wrapper">
+
+		<div class="list-group list-group-flush mt-5 mb-2">
+			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Orders</a>
+			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Bookings</a>
+			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Contacts</a>
+			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Users</a>
+		</div>
+	</div>
+
+	<div id="page-content-wrapper" class="mt-lg-5 mx-auto">
+
+
+
+		<div class=" d-flex flex-column justify-content-center">
+
+			<div class="d-flex flex-row">
+
+				<div class="col-md-4 m-4">
+					<div class="card bg-c-blue order-card">
+						<div class="card-block">
+							<h6 class="m-b-20">Total Users</h6>
+							<h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>@ViewBag.TotalUsers</span></h2>
+							<p class="m-b-0">Users that Joined Today<span class="f-right">351</span></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 m-4">
+					<div class="card bg-c-green order-card">
+						<div class="card-block">
+							<h6 class="m-b-20">Total Orders</h6>
+							<h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>@ViewBag.TotalOrders</span></h2>
+							<p class="m-b-0">Orders Received Today<span class="f-right">@ViewBag.TodayOrders</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="d-flex flex-row">
+				<div class="col-md-4 m-4">
+					<div class="card bg-c-yellow order-card">
+						<div class="card-block">
+							<h6 class="m-b-20">Bookings Received</h6>
+							<h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>@ViewBag.TableBookings</span></h2>
+							<p class="m-b-0">Bookings Received Today<span class="f-right">@ViewBag.TodayBookings</span></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 m-4">
+					<div class="card bg-c-pink order-card">
+						<div class="card-block">
+							<h6 class="m-b-20">Total Revenue</h6>
+							<h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>@ViewBag.Revenue</span></h2>
+							<p class="m-b-0">Revenue Received Today<span class="f-right">@ViewBag.RevenueToday</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	</
+
+
