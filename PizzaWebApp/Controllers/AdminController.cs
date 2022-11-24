@@ -148,6 +148,12 @@ namespace PizzaWebApp.Controllers
 			return View(Bookings);
 		}
 
+		public IActionResult Contacts()
+		{
+			IEnumerable<Contact> Contacts = _db.Contact;
+			return View(Contacts);
+		}
+
 
 	}
 }
