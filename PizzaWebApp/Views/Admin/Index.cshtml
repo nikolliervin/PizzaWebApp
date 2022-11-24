@@ -1,7 +1,8 @@
 ﻿
-<div class="d-flex mt-5">
 
-	<div class="border-end bg-white" id="sidebar-wrapper">
+<div class="d-flex mt-5 w-100">
+
+	<div class="border-end bg-white p-2 flex-shrink-1 mt-5">
 
 		<div class="list-group list-group-flush mt-5 mb-2">
 			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Orders</a>
@@ -11,61 +12,204 @@
 		</div>
 	</div>
 
-	<div id="page-content-wrapper" class="mt-lg-5 mx-auto">
+	<div class="mt-lg-5 p-2 w-75 mx-auto">
+
+
+		<div class="grey-bg container-fluid">
 
 
 
-		<div class=" d-flex flex-column justify-content-center">
+			<div class="row">
+				<div class="col-12 mt-3 mb-1">
+					<h4 class="text-uppercase"><strong>Site </strong>Overview</h4>
+				</div>
+			</div>
 
-			<div class="d-flex flex-row">
-
-				<div class="col-md-4 m-4">
-					<div class="card bg-c-blue order-card">
-						<div class="card-block">
-							<h6 class="m-b-20">Total Users</h6>
-							<h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>@ViewBag.TotalUsers</span></h2>
-							<p class="m-b-0">Users that Joined Today<span class="f-right">351</span></p>
+			<div class="row">
+				<div class="col-xl-6 col-md-12">
+					<div class="card overflow-hidden">
+						<div class="card-content">
+							<div class="card-body cleartfix">
+								<div class="media align-items-stretch">
+									<div class="align-self-center">
+										<i class="icon-pencil primary font-large-2 mr-2"></i>
+									</div>
+									<div class="media-body">
+										<h4>Total Users</h4>
+										<span>Total users registered</span>
+									</div>
+									<div class="align-self-center">
+										<h1>@ViewBag.TotalUsers</h1>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-md-4 m-4">
-					<div class="card bg-c-green order-card">
-						<div class="card-block">
-							<h6 class="m-b-20">Total Orders</h6>
-							<h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>@ViewBag.TotalOrders</span></h2>
-							<p class="m-b-0">Orders Received Today<span class="f-right">@ViewBag.TodayOrders</span></p>
+				<div class="col-xl-6 col-md-12">
+					<div class="card">
+						<div class="card-content">
+							<div class="card-body cleartfix">
+								<div class="media align-items-stretch">
+									<div class="align-self-center">
+										<i class="icon-speech warning font-large-2 mr-2"></i>
+									</div>
+									<div class="media-body">
+										<h4>Total Orders</h4>
+										<span>Total Orders Received</span>
+									</div>
+									<div class="align-self-center">
+										<h1>@ViewBag.TotalOrders</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row"> 
+			<div class="col-xl-6 col-md-12">
+					<div class="card">
+						<div class="card-content">
+							<div class="card-body cleartfix">
+								<div class="media align-items-stretch">
+									<div class="align-self-center">
+										<i class="icon-speech warning font-large-2 mr-2"></i>
+									</div>
+									<div class="media-body">
+										<h4>Total Bookings</h4>
+										<span>Table Bookings Received</span>
+									</div>
+									<div class="align-self-center">
+										<h1>@ViewBag.TableBookings</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-6 col-md-12">
+					<div class="card">
+						<div class="card-content">
+							<div class="card-body cleartfix">
+								<div class="media align-items-stretch">
+									<div class="align-self-center">
+										<i class="icon-speech warning font-large-2 mr-2"></i>
+									</div>
+									<div class="media-body">
+										<h4>Total Revenue</h4>
+										<span>Total Revenue Received</span>
+									</div>
+									<div class="align-self-center">
+										<h1>$ @ViewBag.Revenue</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-xl-6 col-md-12">
+					<div class="card">
+						<div class="card-content">
+							<div class="card-body cleartfix">
+								<div class="media align-items-stretch">
+									<div class="align-self-center">
+										<h1 class="mr-2">$ @ViewBag.RevenueToday</h1>
+									</div>
+									<div class="media-body">
+										<h4>Today's Revenue</h4>
+										<span>Revenue Received Today</span>
+									</div>
+									<div class="align-self-center">
+										<i class="icon-wallet success font-large-2"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-6 col-md-12">
+					<div class="card">
+						<div class="card-content">
+							<div class="card-body cleartfix">
+								<div class="media align-items-stretch">
+									<div class="align-self-center">
+										<i class="icon-speech warning font-large-2 mr-2"></i>
+									</div>
+									<div class="media-body">
+										<h4>Today's Bookings</h4>
+										<span>Bookings Received Today</span>
+									</div>
+									<div class="align-self-center">
+										<h1>@ViewBag.TodayBookings</h1>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
+			<div class="row">
 
-
-			<div class="d-flex flex-row">
-				<div class="col-md-4 m-4">
-					<div class="card bg-c-yellow order-card">
-						<div class="card-block">
-							<h6 class="m-b-20">Bookings Received</h6>
-							<h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>@ViewBag.TableBookings</span></h2>
-							<p class="m-b-0">Bookings Received Today<span class="f-right">@ViewBag.TodayBookings</span></p>
+				<div class="col-xl-6 col-md-12">
+					<div class="card">
+						<div class="card-content">
+							<div class="card-body cleartfix">
+								<div class="media align-items-stretch">
+									<div class="align-self-center">
+										<i class="icon-speech warning font-large-2 mr-2"></i>
+									</div>
+									<div class="media-body">
+										<h4>Today's Orders</h4>
+										<span>Orders Received Today</span>
+									</div>
+									<div class="align-self-center">
+										<h1>@ViewBag.TodayOrders</h1>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-md-4 m-4">
-					<div class="card bg-c-pink order-card">
-						<div class="card-block">
-							<h6 class="m-b-20">Total Revenue</h6>
-							<h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>@ViewBag.Revenue</span></h2>
-							<p class="m-b-0">Revenue Received Today<span class="f-right">@ViewBag.RevenueToday</span></p>
+				<div class="col-xl-6 col-md-12">
+					<div class="card">
+						<div class="card-content">
+							<div class="card-body cleartfix">
+								<div class="media align-items-stretch">
+									<div class="align-self-center">
+										<i class="icon-speech warning font-large-2 mr-2"></i>
+									</div>
+									<div class="media-body">
+										<h4>Products</h4>
+										<span>Total Products</span>
+									</div>
+									<div class="align-self-center">
+										<h1>@ViewBag.TotalProducts</h1>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
+				</div>
+
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
-	</
+
+			</div>
+
+			</div>
+
+
+
+
+
 
 
