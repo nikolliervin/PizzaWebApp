@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaWebApp.Data;
+using PizzaWebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,6 +84,7 @@ namespace PizzaWebApp.Controllers
 
 		public IActionResult Orders()
 		{
+
 			return View();
 		}
 
@@ -138,6 +140,12 @@ namespace PizzaWebApp.Controllers
 			}
 
 
+		}
+
+		public IActionResult Bookings()
+		{
+			IEnumerable<Bookings> Bookings = _db.Bookings;
+			return View(Bookings);
 		}
 
 

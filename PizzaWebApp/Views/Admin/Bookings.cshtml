@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PizzaWebApp.Models.Bookings>
+
+<div class="d-flex mt-5 w-100">
+
+	<div class="border-end bg-white p-2 flex-shrink-1 mt-5">
+
+		<div class="list-group list-group-flush mt-5 mb-2">
+			<a class="list-group-item list-group-item-action list-group-item-light p-3" aasp-action="Orders">Orders</a>
+			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Bookings</a>
+			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Contacts</a>
+			<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Users</a>
+		</div>
+	</div>
+	
+	<div class="mt-lg-5 p-2 w-75 mx-auto">
+		<h4>Table Bookings<strong>.</strong></h4>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Phone Number</th>
+					<th scope="col">Date</th>
+					<th scope="col">People</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				@{
+					foreach (var item in Model)
+					{
+
+						<tr>
+							
+							<td>@item.Name</td>
+							<td>@item.Email</td>
+							<td>@item.PhoneNumber</td>
+							<td>@item.Date</td>
+							<td>@item.NrOfPeople</td>
+						</tr>
+					}
+				}
+
+
+			</tbody>
+		</table>
+	</div>
