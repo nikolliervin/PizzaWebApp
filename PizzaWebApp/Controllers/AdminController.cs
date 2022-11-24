@@ -154,6 +154,12 @@ namespace PizzaWebApp.Controllers
 			return View(Contacts);
 		}
 
+		public IActionResult Users()
+		{
+			IEnumerable<AppUser> Users = _identity.Users;
+			return View(Users);
+		}
+
 
 	}
 }

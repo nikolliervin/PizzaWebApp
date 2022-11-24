@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PizzaWebApp.Models.Contact>
+﻿@model IEnumerable<PizzaWebApp.Data.AppUser>
 
 <div class="d-flex mt-5 w-100">
 
@@ -13,14 +13,14 @@
 	</div>
 
 	<div class="mt-lg-5 p-2 w-75 mx-auto">
-		<h4>Contacts<strong>.</strong></h4>
+		<h4>Users<strong>.</strong></h4>
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">Name</th>
+					<th scope="col">User Id</th>
+					<th scope="col">Username</th>
 					<th scope="col">Email</th>
-					<th scope="col">Subject</th>
-					<th scope="col">Message</th>
+					<th scope="col">Confirmed Email</th>
 
 
 				</tr>
@@ -32,11 +32,13 @@
 
 						<tr>
 
-							<td>@item.Name</td>
-							<td>@item.Email</td>
-							<td>@item.Subject</td>
+							<td>@item.Id</td>
+							<td>@item.UserName</td>
 
-							<td>@item.Message</td>
+							<td>@item.Email</td>
+							<td>@item.EmailConfirmed</td>
+
+							
 						</tr>
 					}
 				}
