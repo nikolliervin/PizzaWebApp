@@ -161,5 +161,13 @@ namespace PizzaWebApp.Controllers
 		}
 
 
+		public async Task<IActionResult> DeleteUser(int? id)
+		{
+			var user = _identity.Users.Find(id);
+			await userManager.DeleteAsync(user);
+
+			return RedirectToAction("Users");
+		}
+
 	}
 }

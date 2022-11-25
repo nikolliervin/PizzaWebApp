@@ -31,14 +31,15 @@
 					{
 
 						<tr>
-
+							<form method="post" asp-action="DeleteUser">
 							<td>@item.Id</td>
 							<td>@item.UserName</td>
 
 							<td>@item.Email</td>
-							<td>@item.EmailConfirmed</td>
+							<td>@item.EmailConfirmed </td>
+							<td><a type="submit" class="btn btn-danger" asp-action="DeleteUser" asp-route-Id="@item.Id">Delete</a></td>
+							</form>
 
-							
 						</tr>
 					}
 				}
