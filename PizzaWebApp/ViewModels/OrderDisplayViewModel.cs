@@ -1,21 +1,22 @@
-﻿using PizzaWebApp.Models;
+﻿using System;
 
 namespace PizzaWebApp.ViewModels
 {
 	public class OrderDisplayViewModel
 	{
-		public Orders Orders { get; set; }
-
-		public ShippingAddress Address { get; set; }
-
 		public string OrderDesc { get; set; }
 
 		public string Street { get; set; }
 
 		public string PhoneNumber { get; set; }
 
-		public string User { get; set; }
+		public string Name { get; set; }
 
+		public string Surname { get; set; }
 		public double Price { get; set; }
+
+		public DateTime Date { get; set; }
+
+
 	}
 }

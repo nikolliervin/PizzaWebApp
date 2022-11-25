@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PizzaWebApp.Data;
 using PizzaWebApp.Models;
+using PizzaWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,10 +83,28 @@ namespace PizzaWebApp.Controllers
 			return View();
 		}
 
-		public IActionResult Orders()
+		public List<OrderDisplayViewModel> UserOrder()
 		{
 
-			return View();
+			var query = (from s in _db.ShippingDetails
+						 join o in _db.Orders on
+					   s.Id equals o.ShippingId
+						 select new OrderDisplayViewModel
+						 {
+							 Name = s.Name,
+							 Surname = s.Surname,
+							 PhoneNumber = s.PhoneNumber,
+							 Street = s.Street,
+							 OrderDesc = o.OrderDesc,
+							 Price = o.Price,
+							 Date = o.Date,
+						 }).ToList();
+			return query;
+		}
+		public IActionResult Orders()
+		{
+			var ordersVM = UserOrder();
+			return View(ordersVM);
 		}
 
 		[HttpPost]
