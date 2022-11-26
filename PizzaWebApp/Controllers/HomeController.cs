@@ -60,10 +60,11 @@ namespace PizzaWebApp.Controllers
 				UserId = Convert.ToInt32(userId)
 
 			};
-			var objectExists = _db.Cart.Where(u => u.UserId == Convert.ToInt32(userId)).Select(o => o.PizzaName);
-			if (objectExists != null)
+			var objectExists = _db.Cart.Where(u => u.UserId == Convert.ToInt32(userId)).Select(o => o.PizzaName).ToList();
+			if (objectExists[0] == item.PizzaName)
 			{
 				var cartItemId = Convert.ToInt32(_db.Cart.Where(p => p.PizzaName == item.PizzaName).Select(c => c.Id).ToList()[0]);
+				var cartItemAmout = Convert.ToInt32(_db.Cart.Where(p => p.PizzaName == item.PizzaName).Select(c => c.Amount).ToList()[0]);
 				var modifyAmount = new CartItems
 				{
 					Id = cartItemId,
@@ -71,9 +72,9 @@ namespace PizzaWebApp.Controllers
 					PizzaName = PizzaItem.Name,
 					PizzaIngredients = PizzaItem.Ingredients,
 					PizzaPrice = PizzaItem.Price,
-					CartItemTotal = PizzaItem.Price,
+					CartItemTotal = item.PizzaPrice * (cartItemAmout + 1),
 					UserId = Convert.ToInt32(userId),
-					Amount = item.Amount + 1
+					Amount = cartItemAmout + 1
 				};
 				_db.Cart.Update(modifyAmount);
 				_db.SaveChanges();

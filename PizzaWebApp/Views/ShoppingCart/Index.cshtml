@@ -37,7 +37,7 @@
 
           <button  type="submit" class="btn btn-danger m-1" asp-action="DeleteItem" asp-route-Id="@item.Id">Delete Item</button></td>
           
-      <td class="TotalItemPrice" >$@item.CartItemTotal</td>
+      <td class="TotalItemPrice" >$@item.CartItemTotal.ToString("0.00")</td>
       
       
     </tr>
