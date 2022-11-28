@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PizzaWebApp.Data;
 using PizzaWebApp.Models;
+using PizzaWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +12,37 @@ namespace PizzaWebApp.Controllers
 	public class Order : Controller
 	{
 		private readonly ApplicationDBContext _db;
-		public Order(ApplicationDBContext data)
+		private readonly AdminController _adm;
+		public Order(ApplicationDBContext data, AdminController adm)
 		{
 			_db = data;
+			_adm = adm;
 		}
 		public IActionResult Index(int? id)
 		{
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-			ShippingAddress Details = _db.ShippingDetails.Find(Convert.ToInt32(userId));
-			IEnumerable<CartItems> cartItems =
-				_db.Cart.Where(c => c.UserId == Convert.ToInt32(userId));
-			ViewBag.Subtotal = cartItems.Select(c => c.CartItemTotal).Sum();
+			return View(OrderAddress(Convert.ToInt32(userId)));
+		}
 
+		public List<OrderDisplayViewModel> OrderAddress(int userId)
+		{
 
-			return View(cartItems);
+			var query = (from s in _db.ShippingDetails
+						 join o in _db.Orders on
+					   s.Id equals o.ShippingId
+						 where s.UserID == userId
+						 select new OrderDisplayViewModel
+						 {
+							 Name = s.Name,
+							 Surname = s.Surname,
+							 PhoneNumber = s.PhoneNumber,
+							 Street = s.Street,
+							 OrderDesc = o.OrderDesc,
+							 Price = o.Price,
+							 Date = o.Date,
+						 }).ToList();
+			return query;
 		}
 
 		public IActionResult SubmitOrder()

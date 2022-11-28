@@ -87,8 +87,8 @@ namespace PizzaWebApp.Controllers
 		{
 
 			var query = (from s in _db.ShippingDetails
-						 join o in _db.Orders on
-					   s.Id equals o.ShippingId
+						 join u in _db.Cart on
+					   s.UserID equals u.UserId
 						 select new OrderDisplayViewModel
 						 {
 							 Name = s.Name,
