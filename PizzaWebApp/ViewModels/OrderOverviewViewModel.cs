@@ -1,4 +1,7 @@
-﻿namespace PizzaWebApp.ViewModels
+﻿using PizzaWebApp.Models;
+using System.Collections.Generic;
+
+namespace PizzaWebApp.ViewModels
 {
 	public class OrderOverviewViewModel
 	{
@@ -14,6 +17,8 @@
 
 		public double CartItemTotal { get; set; }
 
+		public List<ShippingAddress> Addresses { get; set; }
+
 		public string Street { get; set; }
 
 		public string City { get; set; }
@@ -25,6 +30,8 @@
 		public string Surname { get; set; }
 
 		public string PhoneNumber { get; set; }
+
+
 
 	}
 }

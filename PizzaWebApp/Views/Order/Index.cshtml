@@ -4,105 +4,112 @@
 
 <form method="post" asp-action="SubmitOrder">
 
-<div class="d-flex flex-column">
-<div class="mt-5 mb-3 pt-5 pb-3 p-2">
-    <h3 class="mb-4">Order overview</h3>
- <div class="table-responsive">
-    
-         <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Ingredients</th>
-      <th scope="col">Price</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody class="cartTable">
+	<div class="d-flex flex-column">
+		<div class="mt-5 mb-3 pt-5 pb-3 p-2">
+			<h3 class="mb-4">Order overview</h3>
+			<div class="table-responsive">
 
-            
-            
-       @foreach(var item in Model)
-            {
-     
-      
-      <tr>
-      <input type="hidden" asp-for="@item.Id">
-
-      <td scope="row">@item.PizzaName</td>
-      <td>@item.PizzaIngredients</td>
-      <td>$@item.PizzaPrice</td>
-      
-          
-      <td>
-          
-          @item.Amount
-          
-      <td class="TotalItemPrice" >$@item.CartItemTotal</td>
-      
-      
-    </tr>
-    
-            }
-            
-
-    
-    
-  </tbody>
-
-</table>
-<div class="table-responsive">
-
-    <div class="d-flex flex-row-reverse">
-        
-     <div class="p-2">
-         <h5><strong>Subtotal:</strong> $@ViewBag.Subtotal</h5></div>
-    </div>
-    
-    <div class="p-2">
-            <hr class="hr hr-blurry" />   
-    </div>
-
-    
-    </div>
-    
-
-    
-
-      
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Ingredients</th>
+							<th scope="col">Price</th>
+							<th scope="col">Amount</th>
+							<th scope="col">Total</th>
+						</tr>
+					</thead>
+					<tbody class="cartTable">
 
 
-</div>
 
-<div class="p-2">
-    <h3 class="mb-4">Address Details</h3>
-                                                       @* TODO: Refactor using viewmodels*@
-                                    
-                                         <div class="d-flex flex-row align-items-center mb-3">
-                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                            <div class="d-flex flex-column">
-                                            <label class="form-label" for="form3Example3c"><strong class="shippingDetails">Street: </strong>@ViewBag.ShDetails.Street</label>
-                                            <label class="form-label" for="form3Example3c"><strong>City: </strong>@ViewBag.ShDetails.City</label>
-                                            <label class="form-label" for="form3Example3c"><strong>Postal Code: </strong>@ViewBag.ShDetails.PostalCode</label>
-                                            <label class="form-label" for="form3Example3c"><strong>Name: </strong>@ViewBag.ShDetails.Name</label>
-                                            <label class="form-label" for="form3Example3c"><strong>Surname: </strong>@ViewBag.ShDetails.Surname</label>
-                                            <label class="form-label" for="form3Example3c"><strong>Phone Number: </strong>@ViewBag.ShDetails.PhoneNumber</label>
-                                        </div>
-                                        </div>
-                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <button class="btn btn-outline-info m-3" asp-controller="ShippingAddress" asp-action="Index">Review Address</button>
-                                            <button class="btn btn-outline-info m-3" asp-controller="ShoppingCart" asp-action="Index">Review Cart</button>
-                                            <button type="submit" class="btn btn-outline-success m-3" asp-controller="Order" asp-action="SubmitOrder">Confirm Order</button>
-                                            
-                                        </div>
-                                        
-                                        <div class="flex-column justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <p class="text-danger text-center">@ViewBag.Message</p>
-                                        </div>
-</div>
-</div>
-</div>
+						@foreach (var item in Model)
+						{
 
 
-                                            </form>
+							<tr>
+								<input type="hidden" asp-for="@item.Id">
+
+								<td scope="row">@item.PizzaName</td>
+								<td>@item.PizzaIngredients</td>
+								<td>$@item.PizzaPrice</td>
+
+
+								<td>
+
+									@item.Amount
+
+								<td class="TotalItemPrice">$@item.CartItemTotal.ToString("0.00")</td>
+
+
+							</tr>
+
+						}
+
+
+
+
+					</tbody>
+
+				</table>
+				<div class="table-responsive">
+
+					<div class="d-flex flex-row-reverse">
+
+						<div class="p-2">
+							<h5><strong>Subtotal:</strong> $@ViewBag.Subtotal</h5>
+						</div>
+					</div>
+
+					<div class="p-2">
+						<hr class="hr hr-blurry" />
+					</div>
+
+
+				</div>
+
+
+
+
+
+
+
+			</div>
+
+			<div class="p-2">
+				<h3 class="mb-4">Address Details</h3>
+				@* TODO: Refactor using viewmodels*@
+
+				<div class="d-flex flex-row align-items-center mb-3">
+					<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+					<div class="d-flex flex-column">
+						@{
+							
+
+								<label class="form-label" for="form3Example3c"><strong class="shippingDetails">Street: </strong>@ViewBag.ShDetails.Street</label>
+								<label class="form-label" for="form3Example3c"><strong>City: </strong>@ViewBag.ShDetails.City</label>
+								<label class="form-label" for="form3Example3c"><strong>Postal Code: </strong>@ViewBag.ShDetails.PostalCode</label>
+								<label class="form-label" for="form3Example3c"><strong>Name: </strong>@ViewBag.ShDetails.Name</label>
+								<label class="form-label" for="form3Example3c"><strong>Surname: </strong>@ViewBag.ShDetails.Surname</label>
+								<label class="form-label" for="form3Example3c"><strong>Phone Number: </strong>@ViewBag.ShDetails.PhoneNumber</label>
+
+							
+						}
+					</div>
+				</div>
+				<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+					<button class="btn btn-outline-info m-3" asp-controller="ShippingAddress" asp-action="Index">Review Address</button>
+					<button class="btn btn-outline-info m-3" asp-controller="ShoppingCart" asp-action="Index">Review Cart</button>
+					<button type="submit" class="btn btn-outline-success m-3" asp-controller="Order" asp-action="SubmitOrder">Confirm Order</button>
+
+				</div>
+
+				<div class="flex-column justify-content-center mx-4 mb-3 mb-lg-4">
+					<p class="text-danger text-center">@ViewBag.Message</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</form>
