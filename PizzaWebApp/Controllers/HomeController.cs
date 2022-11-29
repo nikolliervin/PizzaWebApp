@@ -61,7 +61,7 @@ namespace PizzaWebApp.Controllers
 
 			};
 			var objectExists = _db.Cart.Where(u => u.UserId == Convert.ToInt32(userId)).Select(o => o.PizzaName).ToList();
-			if (objectExists[0] == item.PizzaName)
+			if (objectExists.Count > 1 && objectExists[0] == item.PizzaName)
 			{
 				var cartItemId = Convert.ToInt32(_db.Cart.Where(p => p.PizzaName == item.PizzaName).Select(c => c.Id).ToList()[0]);
 				var cartItemAmout = Convert.ToInt32(_db.Cart.Where(p => p.PizzaName == item.PizzaName).Select(c => c.Amount).ToList()[0]);
