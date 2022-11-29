@@ -12,19 +12,27 @@ namespace PizzaWebApp.Controllers
 	public class Order : Controller
 	{
 		private readonly ApplicationDBContext _db;
-		private readonly AdminController _adm;
-		public Order(ApplicationDBContext data, AdminController adm)
+
+		public Order(ApplicationDBContext data)
 		{
 			_db = data;
-			_adm = adm;
+
 		}
 		public IActionResult Index(int? id)
 		{
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-			return View(OrderAddress(Convert.ToInt32(userId)));
+			ViewBag.ShDetails = _db.ShippingDetails.Where(u => u.UserID == Convert.ToInt32(userId)).ToList()[0];
+			ViewBag.Subtotal = _db.Cart.Where(u => u.UserId == Convert.ToInt32(userId)).Select(c => c.CartItemTotal).ToList().Sum().ToString("0.00");
+			IEnumerable<CartItems> cartItems = _db.Cart.Where(u => u.UserId == Convert.ToInt32(userId));
+			return View(cartItems);
 		}
 
+		public IActionResult MyOrders()
+		{
+
+			return View();
+		}
 		public List<OrderDisplayViewModel> OrderAddress(int userId)
 		{
 
