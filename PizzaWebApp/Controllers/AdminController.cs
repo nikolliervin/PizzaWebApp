@@ -54,7 +54,7 @@ namespace PizzaWebApp.Controllers
 			ViewBag.TableBookings = bookingDates.Count;
 			ViewBag.TodayBookings = CountOrderWhere(bookingDates, todayDate);
 			ViewBag.Revenue = revenue.Sum().ToString("0.00");
-			ViewBag.RevenueToday = todayRevenue.Sum();
+			ViewBag.RevenueToday = todayRevenue.Sum().ToString("0.00");
 			ViewBag.TotalProducts = totalProducts;
 
 
@@ -87,8 +87,8 @@ namespace PizzaWebApp.Controllers
 		{
 
 			var query = (from s in _db.ShippingDetails
-						 join u in _db.Cart on
-					   s.UserID equals u.UserId
+						 join o in _db.Orders on
+					   s.Id equals o.ShippingId
 						 select new OrderDisplayViewModel
 						 {
 							 Name = s.Name,

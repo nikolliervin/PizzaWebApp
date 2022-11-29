@@ -35,7 +35,7 @@
 						foreach(var item in Model)
 						{	<tr>
 							<td>@item.OrderDesc</td>
-							<td>@item.Price</td>
+							<td>@item.Price.ToString("0.00")</td>
 							<td>@item.Street</td>
 							<td>@item.Name</td>
 							<td>@item.Surname</td>
