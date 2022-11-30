@@ -25,17 +25,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					@{
-						foreach (var item in ViewBag.UserOrders)
-						{
-							<td>@item.UserOrders.OrderDesc</td>
-							<td>@item.UserOrders.Price</td>
-							<td>@item.UserOrders.Date</td>
-						}
-					}
+				@{
+					foreach (var item in ViewBag.UserOrders)
+					{
+						<tr>
 
-				</tr>
+							<td>@item.OrderDesc</td>
+							<td>@item.Price</td>
+							<td>@item.Date</td>
+						</tr>
+
+					}
+				}
+
 
 			</tbody>
 		</table>

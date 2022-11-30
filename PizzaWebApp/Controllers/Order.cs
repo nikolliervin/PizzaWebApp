@@ -35,11 +35,8 @@ namespace PizzaWebApp.Controllers
 			if (userShippingId.Count >= 1)
 			{
 				List<Orders> orders = _db.Orders.Where(o => o.ShippingId == Convert.ToInt32(userShippingId[0])).ToList();
-				for (int i = 0; i < orders.Count; i++)
-				{
-					ViewBag.UserOrders = orders[i];
 
-				}
+				ViewBag.UserOrders = orders;
 
 			}
 			else
