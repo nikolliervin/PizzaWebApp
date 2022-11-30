@@ -30,7 +30,20 @@ namespace PizzaWebApp.Controllers
 
 		public IActionResult MyOrders()
 		{
+			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			var userShippingId = _db.ShippingDetails.Where(u => u.UserID == Convert.ToInt32(userId)).Select(s => s.Id).ToList();
+			if (userShippingId.Count >= 1)
+			{
+				List<Orders> orders = _db.Orders.Where(o => o.ShippingId == Convert.ToInt32(userShippingId[0])).ToList();
+				for (int i = 0; i < orders.Count; i++)
+				{
+					ViewBag.UserOrders = orders[i];
 
+				}
+
+			}
+			else
+				ViewBag.Message = "You don't have any orders just yet";
 			return View();
 		}
 		public List<OrderDisplayViewModel> OrderAddress(int userId)

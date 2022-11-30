@@ -1,1 +1,48 @@
 ﻿
+
+<section style="background-color: white;">
+	<div class="container h-100 mb-5">
+
+		<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 mb-5">
+
+			<p class="text-center h3 fw-bold mb-5 mx-1 mx-md-4 mt-4">Your <strong>Orders</strong></p>
+
+
+
+
+
+		</div>
+
+
+		<table class="table">
+
+			<thead>
+				<tr>
+
+					<th scope="col">Order</th>
+					<th scope="col">Price</th>
+					<th scope="col">Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					@{
+						foreach (var item in ViewBag.UserOrders)
+						{
+							<td>@item.UserOrders.OrderDesc</td>
+							<td>@item.UserOrders.Price</td>
+							<td>@item.UserOrders.Date</td>
+						}
+					}
+
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+
+</section>
