@@ -34,9 +34,11 @@ namespace PizzaWebApp.Controllers
 			var userShippingId = _db.ShippingDetails.Where(u => u.UserID == Convert.ToInt32(userId)).Select(s => s.Id).ToList();
 			if (userShippingId.Count >= 1)
 			{
+				var shippingAddressObj = _db.ShippingDetails.Find(userShippingId[0]);
 				List<Orders> orders = _db.Orders.Where(o => o.ShippingId == Convert.ToInt32(userShippingId[0])).ToList();
 
 				ViewBag.UserOrders = orders;
+				ViewBag.ShippingAddress = shippingAddressObj;
 
 			}
 			else

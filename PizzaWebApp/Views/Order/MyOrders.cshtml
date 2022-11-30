@@ -22,6 +22,10 @@
 					<th scope="col">Order</th>
 					<th scope="col">Price</th>
 					<th scope="col">Date</th>
+					<th scope="col">Shipped To</th>
+					<th scope="col">Street</th>
+
+
 				</tr>
 			</thead>
 			<tbody>
@@ -31,8 +35,10 @@
 						<tr>
 
 							<td>@item.OrderDesc</td>
-							<td>@item.Price</td>
+							<td>$@item.Price.ToString("0.00")</td>
 							<td>@item.Date</td>
+							<td>@ViewBag.ShippingAddress.Name @ViewBag.ShippingAddress.Surname</td>
+							<td>@ViewBag.ShippingAddress.Street</td>
 						</tr>
 
 					}
@@ -41,6 +47,10 @@
 
 			</tbody>
 		</table>
+		<div class="d-flex justify-content-center mt-5 mb-5">
+    <h4 class="m-5 ">@ViewBag.Message</h4>
+</div>
+
 	</div>
 
 
