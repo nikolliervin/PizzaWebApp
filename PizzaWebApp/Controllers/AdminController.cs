@@ -74,14 +74,10 @@ namespace PizzaWebApp.Controllers
 			return counter;
 		}
 
-
-
-
-
-		public IActionResult Login()
-		{
-			return View();
-		}
+        public IActionResult Login()
+        {
+            return View();
+        }
 
 		public List<OrderDisplayViewModel> UserOrder()
 		{
