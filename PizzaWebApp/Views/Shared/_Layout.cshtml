@@ -1,161 +1,177 @@
 ﻿
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pizzeria App</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+	<title>Pizzeria App</title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
 
-  <link href="/img/favicon.png" rel="icon">
-  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
- 
-  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="/img/favicon.png" rel="icon">
+	<link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 
-  <link href="~/css/main.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="/vendor/aos/aos.css" rel="stylesheet">
+	<link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+	<link href="~/css/main.css" rel="stylesheet">
 
 
 </head>
 <body>
-   <header id="header" class="header fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
+	<header id="header" class="header fixed-top d-flex align-items-center">
+		<div class="container d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
-       
-        <h1>Pizzeria App<span>.</span></h1>
-      </a>
+			<a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a asp-controller="Home" asp-action="Index">Home</a></li>         
-          <li><a href="#menu">Menu</a></li>
-          <li ><a asp-controller="AboutUs" asp-action="Index" >About</a></li>        
-          <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Welcome, @User.Identity.Name
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" asp-controller="Order" asp-action="MyOrders">My Orders</a></li>
+				<h1>Pizzeria App<span>.</span></h1>
+			</a>
 
-             <li><a class="dropdown-item" asp-controller="ShippingAddress" asp-action="Index">Shipping Details</a></li>
-              
-              <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
-            
-          </ul>
-        </li>
-        </ul>
-      </nav>
+			<nav id="navbar" class="navbar">
+				<ul>
+					<li><a asp-controller="Home" asp-action="Index">Home</a></li>
+					<li><a href="#menu">Menu</a></li>
+					<li><a asp-controller="AboutUs" asp-action="Index">About</a></li>
+					<li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Welcome, @User.Identity.Name
+						</a>
+						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+							@{
+								if (User.IsInRole("Admin"))
+								{
+									<li><a class="dropdown-item" asp-controller="Admin" asp-action="Index">Dashboard</a></li>
 
-      
-         
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
-    </div>
-  </header>
-    <div class="container mt-3">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-   <footer id="footer" class="footer">
-
-    <div class="container">
-      <div class="row gy-3">
-        <div class="col-lg-3 col-md-6 d-flex">
-          <i class="bi bi-geo-alt icon"></i>
-          <div>
-            <h4>Address</h4>
-            <p>
-              Rruga Teodor Keko, <br>
-              Tirana,1060 - AL<br>
-            </p>
-          </div>
-
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-links d-flex">
-          <i class="bi bi-telephone icon"></i>
-          <div>
-            <h4>Reservations</h4>
-            <p>
-              <strong>Phone:</strong> +355675622013<br>
-              <strong>Email:</strong> nikolliervin@gmail.com<br>
-            </p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-links d-flex">
-          <i class="bi bi-clock icon"></i>
-          <div>
-            <h4>Opening Hours</h4>
-            <p>
-              <strong>Mon-Sat: 11AM</strong> - 23PM<br>
-              Sunday: Closed
-            </p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Follow Us</h4>
-          <div class="social-links d-flex">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Pizzeria App</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-      
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-
-  </footer>
+									<li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
 
 
-    <a asp-controller="ShoppingCart" asp-action="Index" class="scroll-top d-flex align-items-center justify-content-center">
-          <div class="d-flex flex-row-reverse">
-            <p class="cartNumber m-2"><strong>@ViewBag.CartNumber</strong></p>
-            <img src="/img/online-shopping.png" class="fa-xs">
-           </div>
-        </a>
-  <!-- Vendor JS Files -->
-  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/vendor/aos/aos.js"></script>
-  <script src="/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+								}
+								else
+								{
+									<li><a class="dropdown-item" asp-controller="Order" asp-action="MyOrders">My Orders</a></li>
+
+									<li><a class="dropdown-item" asp-controller="ShippingAddress" asp-action="Index">Shipping Details</a></li>
+
+									<li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
+								}
+							}
 
 
-  <!-- Template Main JS File -->
-  <script src="/js/main.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+
+						</ul>
+					</li>
+				</ul>
+			</nav>
+
+
+
+			<i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+			<i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+		</div>
+	</header>
+	<div class="container mt-3">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer id="footer" class="footer">
+
+		<div class="container">
+			<div class="row gy-3">
+				<div class="col-lg-3 col-md-6 d-flex">
+					<i class="bi bi-geo-alt icon"></i>
+					<div>
+						<h4>Address</h4>
+						<p>
+							Rruga Teodor Keko, <br>
+							Tirana,1060 - AL<br>
+						</p>
+					</div>
+
+				</div>
+
+				<div class="col-lg-3 col-md-6 footer-links d-flex">
+					<i class="bi bi-telephone icon"></i>
+					<div>
+						<h4>Reservations</h4>
+						<p>
+							<strong>Phone:</strong> +355675622013<br>
+							<strong>Email:</strong> nikolliervin@gmail.com<br>
+						</p>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 footer-links d-flex">
+					<i class="bi bi-clock icon"></i>
+					<div>
+						<h4>Opening Hours</h4>
+						<p>
+							<strong>Mon-Sat: 11AM</strong> - 23PM<br>
+							Sunday: Closed
+						</p>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 footer-links">
+					<h4>Follow Us</h4>
+					<div class="social-links d-flex">
+						<a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+						<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+						<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+						<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="copyright">
+				&copy; Copyright <strong><span>Pizzeria App</span></strong>. All Rights Reserved
+			</div>
+			<div class="credits">
+
+				Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+			</div>
+		</div>
+
+	</footer>
+
+
+	<a asp-controller="ShoppingCart" asp-action="Index" class="scroll-top d-flex align-items-center justify-content-center">
+		<div class="d-flex flex-row-reverse">
+			<p class="cartNumber m-2"><strong>@ViewBag.CartNumber</strong></p>
+			<img src="/img/online-shopping.png" class="fa-xs">
+		</div>
+	</a>
+	<!-- Vendor JS Files -->
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/vendor/aos/aos.js"></script>
+	<script src="/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="/vendor/purecounter/purecounter_vanilla.js"></script>
+	<script src="/vendor/swiper/swiper-bundle.min.js"></script>
+
+
+	<!-- Template Main JS File -->
+	<script src="/js/main.js"></script>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
