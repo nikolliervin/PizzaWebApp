@@ -26,25 +26,25 @@ namespace PizzaWebApp.Controllers
 			return View(cartItems);
 		}
 
-		//public List<OrderDisplayViewModel> OrderAddress(int userId)
-		//{
 
-		//	var query = (from s in _db.ShippingDetails
-		//				 join o in _db.Orders on
-		//			   s.Id equals o.ShippingId
-		//				 where s.UserID == userId
-		//				 select new OrderDisplayViewModel
-		//				 {
-		//					 Name = s.Name,
-		//					 Surname = s.Surname,
-		//					 PhoneNumber = s.PhoneNumber,
-		//					 Street = s.Street,
-		//					 OrderDesc = o.OrderDesc,
-		//					 Price = o.Price,
-		//					 Date = o.Date,
-		//				 }).ToList();
-		//	return query;
-		//}
+		public IActionResult MyOrders()
+		{
+			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			var userShippingId = _db.ShippingDetails.Where(u => u.UserID == Convert.ToInt32(userId)).Select(s => s.Id).ToList();
+			if (userShippingId.Count >= 1)
+			{
+				var shippingAddressObj = _db.ShippingDetails.Find(userShippingId[0]);
+				List<Orders> orders = _db.Orders.Where(o => o.ShippingId == Convert.ToInt32(userShippingId[0])).ToList();
+
+				ViewBag.UserOrders = orders;
+				ViewBag.ShippingAddress = shippingAddressObj;
+
+			}
+			else
+				ViewBag.Message = "You don't have any orders just yet";
+			return View();
+		}
+		
 
 		public IActionResult SubmitOrder()
 		{
