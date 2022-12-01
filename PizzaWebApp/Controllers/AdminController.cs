@@ -54,7 +54,7 @@ namespace PizzaWebApp.Controllers
 			ViewBag.TableBookings = bookingDates.Count;
 			ViewBag.TodayBookings = CountOrderWhere(bookingDates, todayDate);
 			ViewBag.Revenue = revenue.Sum().ToString("0.00");
-			ViewBag.RevenueToday = todayRevenue.Sum();
+			ViewBag.RevenueToday = todayRevenue.Sum().ToString("0.00");
 			ViewBag.TotalProducts = totalProducts;
 
 

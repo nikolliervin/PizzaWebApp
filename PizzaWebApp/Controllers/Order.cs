@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PizzaWebApp.Data;
 using PizzaWebApp.Models;
-using PizzaWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +20,12 @@ namespace PizzaWebApp.Controllers
 		public IActionResult Index(int? id)
 		{
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
 			ViewBag.ShDetails = _db.ShippingDetails.Where(u => u.UserID == Convert.ToInt32(userId)).ToList()[0];
 			ViewBag.Subtotal = _db.Cart.Where(u => u.UserId == Convert.ToInt32(userId)).Select(c => c.CartItemTotal).ToList().Sum().ToString("0.00");
 			IEnumerable<CartItems> cartItems = _db.Cart.Where(u => u.UserId == Convert.ToInt32(userId));
 			return View(cartItems);
 		}
+
 
 		public IActionResult MyOrders()
 		{
@@ -45,25 +44,7 @@ namespace PizzaWebApp.Controllers
 				ViewBag.Message = "You don't have any orders just yet";
 			return View();
 		}
-		public List<OrderDisplayViewModel> OrderAddress(int userId)
-		{
-
-			var query = (from s in _db.ShippingDetails
-						 join o in _db.Orders on
-					   s.Id equals o.ShippingId
-						 where s.UserID == userId
-						 select new OrderDisplayViewModel
-						 {
-							 Name = s.Name,
-							 Surname = s.Surname,
-							 PhoneNumber = s.PhoneNumber,
-							 Street = s.Street,
-							 OrderDesc = o.OrderDesc,
-							 Price = o.Price,
-							 Date = o.Date,
-						 }).ToList();
-			return query;
-		}
+		
 
 		public IActionResult SubmitOrder()
 		{
