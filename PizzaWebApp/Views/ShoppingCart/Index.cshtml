@@ -1,80 +1,90 @@
-﻿
-@model IEnumerable<PizzaWebApp.Models.CartItems>  
+﻿@model IEnumerable<PizzaWebApp.Models.CartItems>
 <script src="~/js/main.js"></script>
 
 <div class="mt-5 mb-3 pt-5 pb-3">
 
+	@{
+		if (@ViewBag.CartEmpty == null)
+		{
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Ingredients</th>
+						<th scope="col">Price</th>
+						<th scope="col">Amount</th>
+						<th scope="col">Total</th>
+					</tr>
+				</thead>
+				<tbody class="cartTable">
 
-    
-         <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Ingredients</th>
-      <th scope="col">Price</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody class="cartTable">
+					@foreach (var item in Model)
+					{
+						<form method="post" asp-action="SetAmount">
 
-            @foreach(var item in Model)
-            {
-      <form method="post" asp-action="SetAmount">
-      
-      <tr>
-      <input type="hidden" asp-for="@item.Id">
+						<tr>
+							<input type="hidden" asp-for="@item.Id">
 
-      <td scope="row">@item.PizzaName</td>
-      <td>@item.PizzaIngredients</td>
-      <td>$@item.PizzaPrice</td>
-      
-          
-      <td>
-          
-          <label class="form-control">@item.Amount</label>
-          <button  type="submit" class="btn btn-light m-1" asp-action="SetAmount" asp-route-Id="@item.Id" >Update Amount</button>
+							<td scope="row">@item.PizzaName</td>
+							<td>@item.PizzaIngredients</td>
+							<td>$@item.PizzaPrice</td>
 
-          <button  type="submit" class="btn btn-danger m-1" asp-action="DeleteItem" asp-route-Id="@item.Id">Delete Item</button></td>
-          
-      <td class="TotalItemPrice" >$@item.CartItemTotal.ToString("0.00")</td>
-      
-      
-    </tr>
-    </form>
-            }
 
-    
-    
-  </tbody>
+							<td>
 
-</table>
+								<label class="form-control">@item.Amount</label>
+								<button type="submit" class="btn btn-light m-1" asp-action="SetAmount" asp-route-Id="@item.Id">Update Amount</button>
 
-    <div class="d-flex flex-row-reverse">
-        
-     <div class="p-2">
-         <h5><strong>Subtotal:</strong> $@ViewBag.Subtotal</h5></div>
-    </div>
-    
-    <div class="p-2">
-            <hr class="hr hr-blurry" />   
-    </div>
+								<button type="submit" class="btn btn-danger m-1" asp-action="DeleteItem" asp-route-Id="@item.Id">Delete Item</button>
+							</td>
 
-    <div class="d-flex flex-row-reverse">
-        <div class="p-2">
-            <a class="btn btn-outline-success" asp-controller="Order" asp-action="Index">Submit Order</a>
-    </div>
-    </div>
-    
+							<td class="TotalItemPrice">$@item.CartItemTotal.ToString("0.00")</td>
 
-    
 
-      
+						</tr>
+						</form>
+					}
+
+
+
+				</tbody>
+
+			</table>
+
+			<div class="d-flex flex-row-reverse">
+
+				<div class="p-2">
+					<h5><strong>Subtotal:</strong> $@ViewBag.Subtotal</h5>
+				</div>
+			</div>
+
+			<div class="p-2">
+				<hr class="hr hr-blurry" />
+			</div>
+
+			<div class="d-flex flex-row-reverse">
+				<div class="p-2">
+					<a class="btn btn-outline-success" asp-controller="Order" asp-action="Index">Submit Order</a>
+				</div>
+			</div>
+
+
+		}
+		else
+		{
+			<div class="d-flex justify-content-center mt-5 mb-5">
+				<h2 class="m-5 ">@ViewBag.CartEmpty</h2>
+			</div>
+		}
+	}
+
+
+
+
+
 
 
 </div>
 
 
-<div class="d-flex justify-content-center mt-5 mb-5">
-    <h2 class="m-5 ">@ViewBag.CartEmpty</h2>
-</div>
+
