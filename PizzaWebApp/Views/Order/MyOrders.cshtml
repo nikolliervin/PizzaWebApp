@@ -13,45 +13,68 @@
 
 		</div>
 
+		@{
 
-		<table class="table">
-
-			<thead>
-				<tr>
-
-					<th scope="col">Order</th>
-					<th scope="col">Price</th>
-					<th scope="col">Date</th>
-					<th scope="col">Shipped To</th>
-					<th scope="col">Street</th>
+			if (ViewBag.UserOrders != null)
+			{
 
 
-				</tr>
-			</thead>
-			<tbody>
-				@*TODO:Check of orders is empty before*@
-				@{
-					foreach (var item in ViewBag.UserOrders)
-					{
+				<table class="table">
+
+					<thead>
 						<tr>
 
-							<td>@item.OrderDesc</td>
-							<td>$@item.Price.ToString("0.00")</td>
-							<td>@item.Date</td>
-							<td>@ViewBag.ShippingAddress.Name @ViewBag.ShippingAddress.Surname</td>
-							<td>@ViewBag.ShippingAddress.Street</td>
+							<th scope="col">Order</th>
+							<th scope="col">Price</th>
+							<th scope="col">Date</th>
+							<th scope="col">Shipped To</th>
+							<th scope="col">Street</th>
+
+
 						</tr>
+					</thead>
+					<tbody>
+						@*TODO:Check of orders is empty before*@
+						@{
 
-					}
-				}
+
+							foreach (var item in ViewBag.UserOrders)
+							{
+								<tr>
+
+									<td>@item.OrderDesc</td>
+									<td>$@item.Price.ToString("0.00")</td>
+									<td>@item.Date</td>
+									<td>@ViewBag.ShippingAddress.Name @ViewBag.ShippingAddress.Surname</td>
+									<td>@ViewBag.ShippingAddress.Street</td>
+								</tr>
+
+							}
+						}
 
 
-			</tbody>
-		</table>
 
-		<div class="d-flex justify-content-center mt-5 mb-5">
-    <h4 class="m-5 ">@ViewBag.Message</h4>
-</div>
+
+						}
+
+
+					</tbody>
+				</table>
+			}
+			else
+			{
+				<div class="d-flex justify-content-center mt-5 mb-5">
+					<h5 class="m-5 text-danger ">@ViewBag.Message</h5>
+				</div>
+			}
+
+
+
+
+		}
+
+
+
 
 	</div>
 
