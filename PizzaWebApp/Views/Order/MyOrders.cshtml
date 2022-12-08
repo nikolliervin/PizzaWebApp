@@ -18,48 +18,49 @@
 			if (ViewBag.UserOrders != null)
 			{
 
+				<div class="table-responsive">
+					<table class="table">
 
-				<table class="table">
+						<thead>
+							<tr>
 
-					<thead>
-						<tr>
-
-							<th scope="col">Order</th>
-							<th scope="col">Price</th>
-							<th scope="col">Date</th>
-							<th scope="col">Shipped To</th>
-							<th scope="col">Street</th>
-
-
-						</tr>
-					</thead>
-					<tbody>
-						
-						@{
+								<th scope="col">Order</th>
+								<th scope="col">Price</th>
+								<th scope="col">Date</th>
+								<th scope="col">Shipped To</th>
+								<th scope="col">Street</th>
 
 
-							foreach (var item in ViewBag.UserOrders)
-							{
-								<tr>
+							</tr>
+						</thead>
+						<tbody>
 
-									<td>@item.OrderDesc</td>
-									<td>$@item.Price.ToString("0.00")</td>
-									<td>@item.Date</td>
-									<td>@ViewBag.ShippingAddress.Name @ViewBag.ShippingAddress.Surname</td>
-									<td>@ViewBag.ShippingAddress.Street</td>
-								</tr>
+							@{
 
+
+								foreach (var item in ViewBag.UserOrders)
+								{
+									<tr>
+
+										<td>@item.OrderDesc</td>
+										<td>$@item.Price.ToString("0.00")</td>
+										<td>@item.Date</td>
+										<td>@ViewBag.ShippingAddress.Name @ViewBag.ShippingAddress.Surname</td>
+										<td>@ViewBag.ShippingAddress.Street</td>
+									</tr>
+
+								}
 							}
-						}
-
-						
 
 
-						
 
 
-					</tbody>
-				</table>
+
+
+
+						</tbody>
+					</table>
+				</div>
 			}
 			else
 			{

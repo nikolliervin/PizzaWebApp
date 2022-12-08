@@ -5,7 +5,8 @@
 
 	@{
 		if (@ViewBag.CartEmpty == null)
-		{
+		{	
+			<div class="table-responsive">
 			<table class="table">
 				<thead>
 					<tr>
@@ -50,6 +51,7 @@
 				</tbody>
 
 			</table>
+			</div>
 
 			<div class="d-flex flex-row-reverse">
 
