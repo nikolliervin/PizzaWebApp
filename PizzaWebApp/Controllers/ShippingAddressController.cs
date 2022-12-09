@@ -75,7 +75,7 @@ namespace PizzaWebApp.Controllers
             }
 
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Update(int? id)
