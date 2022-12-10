@@ -6,8 +6,8 @@ the **live demo** can be found here: http://pizzawebapp.somee.com/
 
 # Accounts
 
-**Account for quick testing:**
-username: testuser99
+**Account for quick testing:** <br>
+username: testuser99 <br>
 password: Testuser1.!
 
 the **admin area** can be found here: http://pizzawebapp.somee.com/admin/index
