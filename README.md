@@ -7,11 +7,12 @@ the **live demo** can be found here: http://pizzawebapp.somee.com/
 <br>
 
 # Tools
--. net core mvc
--.  ef
--.ef core identity
--. boostrap
--. boostrap yummy template
+-net core mvc <br>
+-ef <br>
+-ef core identity <br>
+-sql server 2019 <br>
+-boostrap <br>
+-boostrap yummy template <br>
 
 
 <br>
