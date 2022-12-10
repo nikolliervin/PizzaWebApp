@@ -4,7 +4,7 @@ this is my first full stack web app built with .net core.
 
 the **live demo** can be found here: http://pizzawebapp.somee.com/
 
-#Accounts
+# Accounts
 
 **Account for quick testing:**
 username: testuser99
