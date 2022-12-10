@@ -2,6 +2,14 @@
 
 this is my first full stack web app built with .net core.
 
+# Tools
+-.net core mvc
+-.ef
+-.ef core identity
+-.boostrap
+-.boostrap yummy template
+
+
 the **live demo** can be found here: http://pizzawebapp.somee.com/
 <br>
 <br>
